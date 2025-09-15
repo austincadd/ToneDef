@@ -1,0 +1,182 @@
+{{ 'section-audio-demo.css' | asset_url | stylesheet_tag }}
+
+<div class="audio-demo-section">
+  <div class="page-width">
+    <div class="audio-demo-container reveal">
+      <h2 class="audio-demo-heading">{{ section.settings.heading | default: 'Audio Preview' }}</h2>
+      
+      <div class="audio-tracks">
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'audio_track' %}
+              <div class="audio-track product-card" {{ block.shopify_attributes }}>
+                <div class="track-info">
+                  <h3 class="track-title">{{ block.settings.track_name }}</h3>
+                  <p class="track-description">{{ block.settings.track_description }}</p>
+                </div>
+                
+                <div class="audio-player">
+                  <audio 
+                    id="audio-{{ forloop.index }}" 
+                    preload="metadata"
+                    {% if section.settings.enable_autoplay %}autoplay{% endif %}>
+                    <source src="{{ block.settings.audio_file | file_url }}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                  </audio>
+                  
+                  <div class="player-controls">
+                    <button class="audio-play-button" data-audio="audio-{{ forloop.index }}">
+                      <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                      <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                      </svg>
+                    </button>
+                    
+                    <div class="progress-container">
+                      <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                      </div>
+                      <div class="time-display">
+                        <span class="current-time">0:00</span>
+                        <span class="duration">0:00</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          {% endcase %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Audio Player Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const audioPlayers = document.querySelectorAll('.audio-player');
+  
+  audioPlayers.forEach(player => {
+    const audio = player.querySelector('audio');
+    const playButton = player.querySelector('.audio-play-button');
+    const progressFill = player.querySelector('.progress-fill');
+    const currentTimeEl = player.querySelector('.current-time');
+    const durationEl = player.querySelector('.duration');
+    const playIcon = player.querySelector('.play-icon');
+    const pauseIcon = player.querySelector('.pause-icon');
+    
+    // Format time
+    function formatTime(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+    
+    // Update progress bar
+    function updateProgress() {
+      const progress = (audio.currentTime / audio.duration) * 100;
+      progressFill.style.width = `${progress}%`;
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+    }
+    
+    // Update duration
+    audio.addEventListener('loadedmetadata', () => {
+      durationEl.textContent = formatTime(audio.duration);
+    });
+    
+    // Play/pause functionality
+    playButton.addEventListener('click', () => {
+      if (audio.paused) {
+        // Pause all other audio players
+        document.querySelectorAll('audio').forEach(otherAudio => {
+          if (otherAudio !== audio) {
+            otherAudio.pause();
+            otherAudio.closest('.audio-player').querySelector('.play-icon').classList.remove('hidden');
+            otherAudio.closest('.audio-player').querySelector('.pause-icon').classList.add('hidden');
+          }
+        });
+        
+        audio.play();
+        playIcon.classList.add('hidden');
+        pauseIcon.classList.remove('hidden');
+      } else {
+        audio.pause();
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+      }
+    });
+    
+    // Update progress
+    audio.addEventListener('timeupdate', updateProgress);
+    
+    // Reset when ended
+    audio.addEventListener('ended', () => {
+      playIcon.classList.remove('hidden');
+      pauseIcon.classList.add('hidden');
+      progressFill.style.width = '0%';
+      currentTimeEl.textContent = '0:00';
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Audio Demo",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Audio Preview"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_autoplay",
+      "label": "Enable Autoplay",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "audio_track",
+      "name": "Audio Track",
+      "settings": [
+        {
+          "type": "text",
+          "id": "track_name",
+          "label": "Track Name",
+          "default": "Track Name"
+        },
+        {
+          "type": "textarea",
+          "id": "track_description",
+          "label": "Track Description"
+        },
+        {
+          "type": "url",
+          "id": "audio_file",
+          "label": "Audio File URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Audio Demo",
+      "blocks": [
+        {
+          "type": "audio_track"
+        },
+        {
+          "type": "audio_track"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

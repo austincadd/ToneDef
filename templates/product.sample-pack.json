@@ -1,0 +1,45 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "enable_sticky_info": true,
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "media_position": "left",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "hide",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "product_selector": "select"
+      }
+    },
+    "audio_demo": {
+      "type": "audio-demo",
+      "settings": {
+        "heading": "Audio Preview",
+        "enable_autoplay": false
+      }
+    },
+    "instant_download": {
+      "type": "instant-download-banner",
+      "settings": {
+        "heading": "Instant Download",
+        "description": "Get immediate access to your files after purchase"
+      }
+    },
+    "product_description": {
+      "type": "main-product",
+      "disabled": true,
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "audio_demo",
+    "instant_download",
+    "product_description"
+  ]
+}

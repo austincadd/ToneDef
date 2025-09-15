@@ -1,0 +1,177 @@
+{{ 'section-installation-guide.css' | asset_url | stylesheet_tag }}
+
+<div class="installation-guide-section">
+  <div class="page-width">
+    <h2 class="guide-heading reveal">{{ section.settings.heading | default: 'Installation Guide' }}</h2>
+    
+    <div class="installation-steps">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'installation_step' %}
+            <div class="step-item accordion-item reveal" {{ block.shopify_attributes }}>
+              <button class="accordion-trigger">
+                <div class="step-number">{{ forloop.index }}</div>
+                <div class="step-content">
+                  <h3 class="step-title">{{ block.settings.step_title }}</h3>
+                  <p class="step-description">{{ block.settings.step_description }}</p>
+                </div>
+                <svg class="accordion-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+              </button>
+              
+              <div class="accordion-content">
+                <div class="step-details">
+                  {% if block.settings.step_image %}
+                    <div class="step-image">
+                      <img src="{{ block.settings.step_image | image_url: width: 600 }}" 
+                           alt="{{ block.settings.step_title | escape }}">
+                    </div>
+                  {% endif %}
+                  
+                  <div class="step-instructions">
+                    {{ block.settings.step_instructions }}
+                  </div>
+                  
+                  {% if block.settings.step_code %}
+                    <div class="code-block">
+                      <pre><code>{{ block.settings.step_code }}</code></pre>
+                    </div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script>
+// Accordion Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const accordionItems = document.querySelectorAll('.accordion-item');
+  
+  accordionItems.forEach(item => {
+    const trigger = item.querySelector('.accordion-trigger');
+    const content = item.querySelector('.accordion-content');
+    const icon = item.querySelector('.accordion-icon');
+    
+    if (trigger && content) {
+      trigger.addEventListener('click', () => {
+        const isOpen = item.classList.contains('active');
+        
+        // Close all other accordion items
+        accordionItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('active');
+            const otherContent = otherItem.querySelector('.accordion-content');
+            const otherIcon = otherItem.querySelector('.accordion-icon');
+            if (otherContent) {
+              otherContent.style.height = '0';
+              otherContent.style.opacity = '0';
+            }
+            if (otherIcon) {
+              otherIcon.style.transform = 'rotate(0deg)';
+            }
+          }
+        });
+        
+        if (isOpen) {
+          // Close current item
+          item.classList.remove('active');
+          content.style.height = '0';
+          content.style.opacity = '0';
+          icon.style.transform = 'rotate(0deg)';
+        } else {
+          // Open current item
+          item.classList.add('active');
+          content.style.height = content.scrollHeight + 'px';
+          content.style.opacity = '1';
+          icon.style.transform = 'rotate(180deg)';
+        }
+      });
+    }
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Installation Guide",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Installation Guide"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "installation_step",
+      "name": "Installation Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_title",
+          "label": "Step Title",
+          "default": "Download the Plugin"
+        },
+        {
+          "type": "textarea",
+          "id": "step_description",
+          "label": "Step Description",
+          "default": "Brief description of this step"
+        },
+        {
+          "type": "richtext",
+          "id": "step_instructions",
+          "label": "Step Instructions",
+          "default": "<p>Detailed instructions for this step...</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "step_image",
+          "label": "Step Image"
+        },
+        {
+          "type": "textarea",
+          "id": "step_code",
+          "label": "Code Example (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Installation Guide",
+      "blocks": [
+        {
+          "type": "installation_step",
+          "settings": {
+            "step_title": "Download the Plugin",
+            "step_description": "Get the plugin files from your purchase"
+          }
+        },
+        {
+          "type": "installation_step",
+          "settings": {
+            "step_title": "Install VST3",
+            "step_description": "Copy files to your VST3 directory"
+          }
+        },
+        {
+          "type": "installation_step",
+          "settings": {
+            "step_title": "Restart Your DAW",
+            "step_description": "Reload your DAW to detect the new plugin"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

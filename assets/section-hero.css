@@ -1,0 +1,163 @@
+/* ToneDef Hero Section Styles */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--tonedef-dark);
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(13, 15, 13, 0.8) 0%,
+    rgba(26, 61, 47, 0.3) 50%,
+    rgba(13, 15, 13, 0.9) 100%
+  );
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+  min-height: 80vh;
+  padding: 4rem 0;
+}
+
+@media screen and (min-width: 990px) {
+  .hero-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+}
+
+.hero-text {
+  text-align: center;
+}
+
+@media screen and (min-width: 990px) {
+  .hero-text {
+    text-align: left;
+  }
+}
+
+.hero-title {
+  margin-bottom: 2rem;
+  color: var(--tonedef-neon);
+  text-shadow: 0 0 20px rgba(102, 255, 204, 0.3);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 3rem;
+  max-width: 60rem;
+}
+
+@media screen and (min-width: 750px) {
+  .hero-subtitle {
+    font-size: 2rem;
+  }
+}
+
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media screen and (min-width: 750px) {
+  .hero-cta {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .hero-cta {
+    justify-content: flex-start;
+  }
+}
+
+.hero-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-featured-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(102, 255, 204, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.hero-featured-image:hover {
+  transform: scale(1.02);
+}
+
+/* Animation Classes */
+.hero-title,
+.hero-subtitle,
+.hero-cta {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+/* Parallax Effect */
+.parallax {
+  will-change: transform;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 749px) {
+  .hero-section {
+    min-height: 80vh;
+  }
+  
+  .hero-content {
+    min-height: 60vh;
+    padding: 2rem 0;
+  }
+  
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.6rem;
+  }
+}

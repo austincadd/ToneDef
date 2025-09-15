@@ -1,0 +1,64 @@
+{{ 'section-instant-download.css' | asset_url | stylesheet_tag }}
+
+<div class="instant-download-banner reveal">
+  <div class="banner-content">
+    <div class="banner-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+      </svg>
+    </div>
+    
+    <div class="banner-text">
+      <h3 class="banner-heading">{{ section.settings.heading | default: 'Instant Download' }}</h3>
+      <p class="banner-description">{{ section.settings.description | default: 'Get immediate access to your files after purchase' }}</p>
+    </div>
+    
+    <div class="banner-features">
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+        </svg>
+        <span>No waiting</span>
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+        <span>High quality</span>
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/>
+        </svg>
+        <span>Secure</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Instant Download Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Instant Download"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Get immediate access to your files after purchase"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instant Download Banner"
+    }
+  ]
+}
+{% endschema %}

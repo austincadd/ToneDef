@@ -1,0 +1,106 @@
+{{ 'section-hero.css' | asset_url | stylesheet_tag }}
+
+<div class="hero-section">
+  <div class="hero-background parallax">
+    {% if section.settings.background_image %}
+      <img src="{{ section.settings.background_image | image_url: width: 1920 }}" 
+           alt="{{ section.settings.background_image.alt | escape }}"
+           class="hero-bg-image">
+    {% endif %}
+    <div class="hero-overlay"></div>
+  </div>
+  
+  <div class="page-width">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title hxxl">
+          {{ section.settings.heading | default: 'Professional Music Production Tools' }}
+        </h1>
+        
+        <p class="hero-subtitle">
+          {{ section.settings.subheading | default: 'Elevate your sound with premium sample packs, cutting-edge plugins, and exclusive producer resources.' }}
+        </p>
+        
+        <div class="hero-cta">
+          <a href="{{ section.settings.cta_url | default: '/collections/all' }}" 
+             class="button button--primary buy-button">
+            {{ section.settings.cta_text | default: 'Explore Products' }}
+          </a>
+          
+          {% if section.settings.secondary_cta_text != blank %}
+            <a href="{{ section.settings.secondary_cta_url }}" 
+               class="button button--secondary">
+              {{ section.settings.secondary_cta_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+      
+      {% if section.settings.featured_image %}
+        <div class="hero-image reveal">
+          <img src="{{ section.settings.featured_image | image_url: width: 600 }}" 
+               alt="{{ section.settings.featured_image.alt | escape }}"
+               class="hero-featured-image">
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Professional Music Production Tools"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Elevate your sound with premium sample packs, cutting-edge plugins, and exclusive producer resources."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Primary CTA Text",
+      "default": "Explore Products"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Primary CTA URL"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_text",
+      "label": "Secondary CTA Text"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_url",
+      "label": "Secondary CTA URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "Featured Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section"
+    }
+  ]
+}
+{% endschema %}
