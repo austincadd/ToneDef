@@ -12,7 +12,7 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "heading": "Your Studio, Upgraded—Pro Sounds at Your Fingertips.",
+        "heading": "Your Sound, Upgraded—Pro Sounds at Your Fingertips.",
         "subheading": "Explore premium sample packs and VST presets built for modern producers.",
         "cta_text": "Shop Now",
         "cta_url": "/collections/all",
@@ -51,6 +51,7 @@
         "heading": "Stay in the Lab",
         "subtext": "Exclusive sounds, presets, and early access to plugins — free for our members.",
         "button_text": "Unlock Free Sounds",
+        "form_action": "/contact#contact_form",
         "disclaimer": "Instant access to free sounds. No spam, unsubscribe anytime."
       }
     },
@@ -76,7 +77,7 @@
         "headline": "Let's build something together.",
         "subtext": "Questions about our packs or plugins?"
       }
-    },
+    }
   },
   "order": [
     "hero",
