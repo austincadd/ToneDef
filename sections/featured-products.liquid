@@ -1,53 +1,66 @@
 {{ 'section-featured-products.css' | asset_url | stylesheet_tag }}
 
-<div class="featured-products-section">
+<div class="featured-products-section section" id="shop">
   <div class="page-width">
-    {% if section.settings.heading != blank %}
-      <h2 class="featured-products-heading reveal">{{ section.settings.heading }}</h2>
-    {% endif %}
+    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+      {% if section.settings.heading != blank %}
+        <h2 class="featured-products-heading reveal" style="color: #ffffff; font-size: 2.5rem; font-weight: 600; margin-bottom: 1rem; font-family: 'Space Grotesk', sans-serif;">{{ section.settings.heading }}</h2>
+      {% endif %}
+      
+      {% if section.settings.subheading != blank %}
+        <p class="featured-products-subheading reveal" style="color: rgba(255, 255, 255, 0.6); font-size: 1.1rem; max-width: 500px; margin: 0 auto; line-height: 1.5;">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
     
-    {% if section.settings.subheading != blank %}
-      <p class="featured-products-subheading reveal">{{ section.settings.subheading }}</p>
-    {% endif %}
-    
-    <!-- Product cards with real product data -->
-    <div class="placeholder-products">
+    <!-- Sample Pack Product Grid -->
+    <div class="sample-packs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 3rem;">
       {% assign products = collections[section.settings.collection].products %}
       {% assign products_to_show = section.settings.products_to_show | default: 2 %}
       
       {% for product in products limit: products_to_show %}
-        <div class="placeholder-product-card">
-          {% if product.featured_media %}
-            <div class="placeholder-image" style="background: none; padding: 0;">
-              <img 
-                src="{{ product.featured_media | image_url: width: 400 }}" 
-                alt="{{ product.featured_media.alt | escape }}"
-                style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px 15px 0 0;"
-                loading="lazy"
-              >
-            </div>
-          {% else %}
-            <div class="placeholder-image">
-              <span class="placeholder-icon">🎵</span>
+        <div class="sample-pack-card" style="background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.2s ease; position: relative;">
+          <!-- Sale Badge -->
+          {% if product.compare_at_price > product.price %}
+            <div class="sale-badge" style="position: absolute; top: 1rem; right: 1rem; background: #ff4444; color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">
+              {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
+              -{{ discount }}%
             </div>
           {% endif %}
           
-          <div class="placeholder-content">
-            <h3>{{ product.title | default: 'Sample Pack' }}</h3>
-            <p>{{ product.description | strip_html | truncate: 100 | default: 'Premium sounds for your next hit' }}</p>
-            <div class="placeholder-price">
-              {% if product.price %}
-                {{ product.price | money }}
-              {% else %}
-                $29.99
-              {% endif %}
+          <!-- Product Image -->
+          <div class="product-image-container" style="margin-bottom: 1rem; border-radius: 6px; overflow: hidden; background: #1a1a1a; height: 180px; display: flex; align-items: center; justify-content: center;">
+            {% if product.featured_media %}
+              <img src="{{ product.featured_media | image_url: width: 300 }}" 
+                   alt="{{ product.featured_media.alt | escape }}"
+                   loading="lazy"
+                   style="width: 100%; height: 100%; object-fit: cover;">
+            {% else %}
+              <div class="product-placeholder" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
+                <div class="placeholder-icon" style="font-size: 2rem; color: #66ffcc;">🎵</div>
+              </div>
+            {% endif %}
+          </div>
+          
+          <!-- Product Info -->
+          <div class="product-info">
+            <h3 class="product-title" style="color: #ffffff; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.3; font-family: 'Space Grotesk', sans-serif;">{{ product.title | default: 'Sample Pack' }}</h3>
+            <p class="product-description" style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.4;">{{ product.description | strip_html | truncate: 60 | default: 'Premium sounds for your next hit' }}</p>
+            
+            <!-- Price Section -->
+            <div class="product-price" style="margin-bottom: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span class="current-price" style="color: #66ffcc; font-size: 1.2rem; font-weight: 700;">
+                  {% if product.price %}{{ product.price | money }}{% else %}$29.99{% endif %}
+                </span>
+                {% if product.compare_at_price > product.price %}
+                  <span class="original-price" style="color: rgba(255, 255, 255, 0.4); font-size: 0.9rem; text-decoration: line-through;">{{ product.compare_at_price | money }}</span>
+                {% endif %}
+              </div>
             </div>
-            <a href="{{ product.url | default: '#' }}" class="button button--primary">
-              {% if product.available %}
-                Get Pack
-              {% else %}
-                Coming Soon
-              {% endif %}
+            
+            <!-- Action Button -->
+            <a href="{{ product.url | default: '#' }}" class="add-to-cart-btn" style="width: 100%; background: #66ffcc; color: #1a1a1a; padding: 0.8rem; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; text-decoration: none; text-align: center; display: block;">
+              {% if product.available %}Add to Cart{% else %}Coming Soon{% endif %}
             </a>
           </div>
         </div>

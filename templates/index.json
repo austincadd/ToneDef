@@ -15,9 +15,9 @@
         "heading": "Your Sound, Upgraded—Pro Sounds at Your Fingertips.",
         "subheading": "Explore premium sample packs and VST presets built for modern producers.",
         "cta_text": "Shop Now",
-        "cta_url": "/collections/all",
+        "cta_url": "#shop",
         "secondary_cta_text": "Discover Plugins",
-        "secondary_cta_url": "/collections/plugins"
+        "secondary_cta_url": "#plugins"
       }
     },
     "featured_products": {
@@ -26,8 +26,8 @@
         "heading": "Featured Packs",
         "subheading": "Handpicked sounds from our studio",
         "collection": "all",
-        "products_to_show": 2,
-        "show_view_all": true,
+        "products_to_show": 8,
+        "show_view_all": false,
         "view_all_text": "View All Packs"
       }
     },
@@ -38,22 +38,13 @@
         "description": "Every sound in our collection is crafted by industry veterans who understand what producers need to create their next hit. We're not just selling samples and plugins – we're sharing the tools that helped us build our own careers in music."
       }
     },
-    "email_capture": {
-      "type": "email-capture",
-      "settings": {
-        "heading": "Stay in the Lab",
-        "subtext": "Exclusive sounds, presets, and early access to plugins — free for our members.",
-        "button_text": "Unlock Free Sounds",
-        "disclaimer": "Instant access to free sounds. No spam, unsubscribe anytime."
-      }
-    },
     "plugin_spotlight": {
       "type": "plugin-spotlight",
       "settings": {
         "heading": "Meet Our Flagship Plugin",
         "tagline": "The ultimate tool for professional music production",
         "plugin_name": "Def Audio Pro",
-        "try_url": "/collections/plugins"
+        "try_url": "#plugins"
       }
     },
     "trusted_artists": {
@@ -61,6 +52,15 @@
       "settings": {
         "heading": "Trusted by Top Artists",
         "subheading": "See what professional music producers are saying about our sample packs & plugins."
+      }
+    },
+    "email_capture": {
+      "type": "email-capture",
+      "settings": {
+        "heading": "Stay in the Lab",
+        "subtext": "Exclusive sounds, presets, and early access to plugins — free for our members.",
+        "button_text": "Unlock Free Sounds",
+        "disclaimer": "Instant access to free sounds. No spam, unsubscribe anytime."
       }
     },
     "footer_contact": {
@@ -75,9 +75,9 @@
     "hero",
     "featured_products",
     "brand_story",
-    "email_capture",
     "plugin_spotlight",
     "trusted_artists",
+    "email_capture",
     "footer_contact"
   ]
 }

@@ -1,0 +1,382 @@
+{% comment %}
+  Single-page navigation header
+{% endcomment %}
+
+<link rel="stylesheet"
+      href="{{ 'component-list-menu.css' | asset_url }}"
+      media="print"
+      onload="this.media='all'">
+<link rel="stylesheet"
+      href="{{ 'component-search.css' | asset_url }}"
+      media="print"
+      onload="this.media='all'">
+<link rel="stylesheet"
+      href="{{ 'component-menu-drawer.css' | asset_url }}"
+      media="print"
+      onload="this.media='all'">
+
+<style>
+  .single-page-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .single-page-header.scrolled {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(20px);
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(102, 255, 204, 0.1);
+  }
+
+  .single-page-header .page-width {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+  }
+
+  .single-page-header .header__heading {
+    flex-shrink: 0;
+  }
+
+  .single-page-header .header__heading-link {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .single-page-header .header__heading-logo {
+    height: 40px;
+    width: auto;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(1.5) drop-shadow(0 0 20px rgba(102, 255, 204, 0.8));
+  }
+
+  .single-page-header .h2 {
+    color: #66ffcc;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .single-page-nav {
+    display: flex;
+    gap: 4rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+
+  .single-page-nav a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    position: relative;
+    padding: 0.5rem 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .single-page-nav a:hover {
+    color: #66ffcc;
+  }
+
+  .single-page-nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #66ffcc;
+    transition: width 0.2s ease;
+  }
+
+  .single-page-nav a:hover::before {
+    width: 100%;
+  }
+
+  .mobile-nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    width: 24px;
+    height: 24px;
+  }
+
+  .mobile-nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: #ffffff;
+    margin: 4px 0;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav-toggle:hover span {
+    background: #66ffcc;
+  }
+
+  .mobile-nav-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .mobile-nav-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-nav-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  @media (max-width: 990px) {
+    .single-page-header .page-width {
+      padding: 0 2rem;
+    }
+
+    .single-page-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(20px);
+      flex-direction: column;
+      padding: 3rem 2rem;
+      gap: 2rem;
+      border-top: 1px solid rgba(102, 255, 204, 0.1);
+    }
+
+    .single-page-nav.active {
+      display: flex;
+    }
+
+    .mobile-nav-toggle {
+      display: block;
+    }
+
+    .single-page-nav a {
+      font-size: 1.2rem;
+      text-align: center;
+      width: 100%;
+      padding: 1.5rem 0;
+      font-weight: 600;
+      text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+
+    .single-page-nav a::before {
+      display: none;
+    }
+  }
+
+  /* Ultra minimal scroll indicator */
+  .scroll-indicator {
+    position: fixed;
+    top: 50%;
+    right: 2rem;
+    transform: translateY(-50%);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .scroll-indicator a {
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+
+  .scroll-indicator a.active,
+  .scroll-indicator a:hover {
+    background: #66ffcc;
+    transform: scale(1.5);
+  }
+
+  @media (max-width: 768px) {
+    .scroll-indicator {
+      display: none;
+    }
+  }
+</style>
+
+<header class="single-page-header">
+  <div class="page-width">
+    <div class="header__heading">
+      <a href="{{ routes.root_url }}" class="header__heading-link">
+        {%- if settings.logo != blank -%}
+          <img src="{{ settings.logo | image_url: width: 200 }}"
+               alt="{{ shop.name | escape }}"
+               class="header__heading-logo"
+               width="200"
+               height="auto">
+        {%- else -%}
+          <span class="h2">{{ shop.name }}</span>
+        {%- endif -%}
+      </a>
+    </div>
+
+    <nav class="single-page-nav" id="nav-menu">
+      <a href="{{ routes.root_url }}#hero">Home</a>
+      <a href="{{ routes.root_url }}#shop">Sample Packs</a>
+      <a href="{{ routes.root_url }}#presets">Presets</a>
+      <a href="{{ routes.root_url }}#racks">Racks</a>
+      <a href="{{ routes.root_url }}#bundles">Bundles</a>
+      <a href="{{ routes.root_url }}#free">Free Downloads</a>
+    </nav>
+
+    <button class="mobile-nav-toggle" id="mobile-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Minimal scroll indicator -->
+<div class="scroll-indicator">
+  <a href="{{ routes.root_url }}#hero" data-section="hero"></a>
+  <a href="{{ routes.root_url }}#shop" data-section="shop"></a>
+  <a href="{{ routes.root_url }}#about" data-section="about"></a>
+  <a href="{{ routes.root_url }}#plugins" data-section="plugins"></a>
+  <a href="{{ routes.root_url }}#testimonials" data-section="testimonials"></a>
+  <a href="{{ routes.root_url }}#contact" data-section="contact"></a>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.querySelector('.single-page-header');
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('nav-menu');
+  const scrollIndicators = document.querySelectorAll('.scroll-indicator a');
+
+  // Scroll effect
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+
+    // Update scroll indicators
+    updateScrollIndicators();
+  });
+
+  // Update scroll indicators based on current section
+  function updateScrollIndicators() {
+    const sections = ['hero', 'shop', 'about', 'plugins', 'testimonials', 'contact'];
+    const scrollPos = window.scrollY + 200;
+
+    sections.forEach(section => {
+      const element = document.getElementById(section);
+      const indicator = document.querySelector(`[data-section="${section}"]`);
+      
+      if (element && indicator) {
+        const rect = element.getBoundingClientRect();
+        const isVisible = rect.top <= scrollPos && rect.bottom >= scrollPos;
+        
+        indicator.classList.toggle('active', isVisible);
+      }
+    });
+  }
+
+  // Mobile menu toggle with animation
+  if (toggle && menu) {
+    toggle.addEventListener('click', function() {
+      menu.classList.toggle('active');
+      toggle.classList.toggle('active');
+    });
+  }
+
+  // Smooth scroll navigation
+  const navLinks = document.querySelectorAll('.single-page-nav a, .scroll-indicator a');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      const hashIndex = href.indexOf('#');
+      
+      if (hashIndex !== -1) {
+        const targetId = href.substring(hashIndex);
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+          e.preventDefault();
+          const headerHeight = header.offsetHeight;
+          const targetPosition = targetElement.offsetTop - headerHeight;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+
+          // Close mobile menu
+          if (menu) {
+            menu.classList.remove('active');
+            toggle.classList.remove('active');
+          }
+        }
+      }
+    });
+  });
+
+  // Initialize scroll indicators
+  updateScrollIndicators();
+});
+</script>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "select",
+      "id": "menu_type_desktop",
+      "options": [
+        {
+          "value": "dropdown",
+          "label": "Dropdown"
+        },
+        {
+          "value": "mega",
+          "label": "Mega menu"
+        },
+        {
+          "value": "drawer",
+          "label": "Drawer"
+        }
+      ],
+      "default": "dropdown",
+      "label": "Menu type"
+    }
+  ]
+}
+{% endschema %}

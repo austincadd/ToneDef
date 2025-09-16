@@ -1,6 +1,6 @@
 {{ 'section-hero.css' | asset_url | stylesheet_tag }}
 
-<div class="hero-section">
+<div class="hero-section section" id="hero">
   <div class="hero-background parallax">
     {% if section.settings.background_image %}
       <img src="{{ section.settings.background_image | image_url: width: 1920 }}" 
@@ -12,14 +12,49 @@
   
   <div class="page-width">
     <div class="hero-content">
-      <div class="hero-text" style="background: rgba(0,0,0,0.8); padding: 1rem; border-radius: 6px; text-align: center; border: 1px solid #66ffcc; position: relative; z-index: 10; width: 100%; max-width: 1200px; margin: 0 auto;">
-        <h1 style="color: #66ffcc !important; font-size: 1.8rem !important; margin-bottom: 0.5rem !important; font-weight: 700 !important; line-height: 1.2 !important; text-shadow: 0 0 15px rgba(102, 255, 204, 0.8) !important; display: block !important; visibility: visible !important; width: 100%; text-align: center !important;">
-          Your Studio, Upgraded—Pro Sounds at Your Fingertips.
-        </h1>
+      <div class="hero-content-wrapper" style="display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1200px; margin: 0 auto; gap: 6rem;">
+        <!-- Featured Product Image -->
+        <div class="hero-product-image" style="flex: 1; position: relative;">
+          <div class="product-image-container" style="background: rgba(255, 255, 255, 0.05); padding: 3rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
+            <div class="product-placeholder" style="width: 100%; height: 350px; background: #1a1a1a; border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+              <div class="product-icon" style="font-size: 3rem; color: #66ffcc;">🎵</div>
+            </div>
+            <div class="sale-badge" style="position: absolute; top: 1.5rem; right: 1.5rem; background: #ff4444; color: white; padding: 0.4rem 0.8rem; border-radius: 4px; font-weight: 600; font-size: 0.8rem;">
+              50% OFF
+            </div>
+          </div>
+        </div>
         
-        <p style="color: #ffffff !important; font-size: 1rem !important; margin-bottom: 0 !important; line-height: 1.3 !important; text-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important; display: block !important; visibility: visible !important; width: 100%; text-align: center !important;">
-          Explore premium sample packs and VST presets built for modern producers.
-        </p>
+        <!-- Hero Text Content -->
+        <div class="hero-text" style="flex: 1; text-align: left;">
+          <div class="product-badge" style="color: #66ffcc; padding: 0.3rem 0; margin-bottom: 1rem; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px;">
+            Featured Pack
+          </div>
+          
+          <h1 style="color: #ffffff !important; font-size: 2.5rem !important; margin-bottom: 1rem !important; font-weight: 600 !important; line-height: 1.2 !important; display: block !important; visibility: visible !important; width: 100%; text-align: left !important; font-family: 'Space Grotesk', sans-serif;">
+            Warehouse Vocals
+          </h1>
+          
+          <p style="color: rgba(255, 255, 255, 0.7) !important; font-size: 1.1rem !important; margin-bottom: 2rem !important; line-height: 1.6 !important; display: block !important; visibility: visible !important; width: 100%; text-align: left !important;">
+            Professional quality vocal samples for your next track. Clean, punchy, and ready to use.
+          </p>
+          
+          <div class="price-section" style="margin-bottom: 2rem;">
+            <div class="price-container" style="display: flex; align-items: center; gap: 1rem;">
+              <span class="current-price" style="color: #66ffcc !important; font-size: 2rem !important; font-weight: 700 !important;">$29.99</span>
+              <span class="original-price" style="color: rgba(255, 255, 255, 0.4) !important; font-size: 1.2rem !important; text-decoration: line-through !important;">$59.99</span>
+            </div>
+          </div>
+          
+          <div class="cta-buttons" style="display: flex; gap: 1rem;">
+            <button class="add-to-cart-btn" style="background: #66ffcc; color: #1a1a1a; padding: 1rem 2rem; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.2s ease;">
+              Add to Cart
+            </button>
+            <button class="preview-btn" style="background: transparent; color: #66ffcc; padding: 1rem 2rem; border: 1px solid #66ffcc; border-radius: 6px; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.2s ease;">
+              Preview
+            </button>
+          </div>
+        </div>
       </div>
       
       {% if section.settings.featured_image %}
