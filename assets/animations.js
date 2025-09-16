@@ -1,4 +1,4 @@
-// ToneDef Animations with GSAP and Swup.js
+// Def Audio Animations with GSAP and Swup.js
 // Professional music production theme animations
 
 // Initialize GSAP and Swup
@@ -19,8 +19,8 @@ const swup = new Swup({
   ]
 });
 
-// ToneDef Animation Classes
-class ToneDefAnimations {
+// Def Audio Animation Classes
+class Def AudioAnimations {
   constructor() {
     this.init();
   }
@@ -289,12 +289,12 @@ class ToneDefAnimations {
 }
 
 // Initialize animations when page loads
-new ToneDefAnimations();
+new Def AudioAnimations();
 
 // Re-initialize animations after Swup page transitions
 swup.on('contentReplaced', () => {
-  new ToneDefAnimations();
+  new Def AudioAnimations();
 });
 
 // Export for use in other scripts
-window.ToneDefAnimations = ToneDefAnimations;
+window.Def AudioAnimations = Def AudioAnimations;

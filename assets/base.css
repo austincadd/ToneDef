@@ -7,7 +7,7 @@
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
   
-  /* ToneDef Brand Overrides */
+  /* Def Audio Brand Overrides */
   --color-background: 13, 15, 13; /* #0d0f0d */
   --color-foreground: 102, 255, 204; /* #66ffcc */
   --color-button: 26, 61, 47; /* #1a3d2f */
@@ -1286,7 +1286,7 @@ button.shopify-payment-button__button--unbranded {
     0 0 0 calc(var(--buttons-border-width) + 1px) rgba(var(--color-button), var(--alpha-button-background));
 }
 
-/* ToneDef Neon Glow Effects */
+/* Def Audio Neon Glow Effects */
 .button:not([disabled]):hover,
 .shopify-challenge__button:hover,
 .customer button:hover,
