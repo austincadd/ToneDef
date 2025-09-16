@@ -12,7 +12,7 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "heading": "Your Studio, Upgraded—Pro Sounds at Your Fingertips.",
+        "heading": "Your Sound, Upgraded—Pro Sounds at Your Fingertips.",
         "subheading": "Explore premium sample packs and VST presets built for modern producers.",
         "cta_text": "Shop Now",
         "cta_url": "/collections/all",
@@ -69,7 +69,7 @@
         "headline": "Let's build something together.",
         "subtext": "Questions about our packs or plugins?"
       }
-    },
+    }
   },
   "order": [
     "hero",

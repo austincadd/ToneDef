@@ -482,6 +482,44 @@
         }
       });
       
+      // More aggressive approach - check for any clickable element with contact text
+      document.addEventListener('click', function(e) {
+        const target = e.target;
+        const text = target.textContent.toLowerCase();
+        
+        console.log('Element clicked:', target.tagName, 'Text:', text.substring(0, 50));
+        
+        // Check if clicked element or its parent contains contact-related text
+        if (text.includes('contact') || text.includes('support') || text.includes('help')) {
+          console.log('🎯 Contact-related element clicked:', target, 'Text:', text);
+          
+          // Check if it's a clickable element
+          if (target.tagName === 'SUMMARY' || 
+              target.tagName === 'BUTTON' || 
+              target.tagName === 'A' ||
+              target.classList.contains('tab') ||
+              target.closest('summary') ||
+              target.closest('button') ||
+              target.closest('a')) {
+            
+            console.log('✅ Contact clickable element detected, scrolling...');
+            setTimeout(() => {
+              if (contactSection) {
+                console.log('📍 Scrolling to contact section...');
+                contactSection.scrollIntoView({ 
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              } else {
+                console.error('❌ Contact section not found for scrolling');
+              }
+            }, 300);
+          } else {
+            console.log('⚠️ Contact text found but not a clickable element');
+          }
+        }
+      });
+      
       // Add a test function to manually scroll to contact
       window.scrollToContact = function() {
         console.log('Manual scroll to contact triggered');
