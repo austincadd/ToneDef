@@ -12,28 +12,80 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "heading": "Professional Music Production Tools",
-        "subheading": "Elevate your sound with premium sample packs, cutting-edge plugins, and exclusive producer resources.",
-        "cta_text": "Explore Products",
+        "heading": "Your Studio, Upgraded—Pro Sounds at Your Fingertips.",
+        "subheading": "Explore premium sample packs and VST presets built for modern producers.",
+        "cta_text": "Shop Now",
         "cta_url": "/collections/all",
-        "secondary_cta_text": "Learn More",
-        "secondary_cta_url": "/pages/about"
+        "secondary_cta_text": "Discover Plugins",
+        "secondary_cta_url": "/collections/plugins"
       }
     },
     "featured_products": {
       "type": "featured-products",
       "settings": {
-        "heading": "Featured Products",
-        "subheading": "Discover our latest sample packs and plugins designed for professional music producers",
+        "heading": "Featured Packs",
+        "subheading": "Handpicked sounds from our studio",
         "collection": "all",
-        "products_to_show": 5,
+        "products_to_show": 2,
         "show_view_all": true,
-        "view_all_text": "View All Products"
+        "view_all_text": "View All Packs"
       }
-    }
+    },
+    "brand_story": {
+      "type": "brand-story",
+      "settings": {
+        "heading": "Built by Producers, for Producers",
+        "description": "Every sound in our collection is crafted by industry veterans who understand what producers need to create their next hit. We're not just selling samples and plugins – we're sharing the tools that helped us build our own careers in music."
+      }
+    },
+    "value_props": {
+      "type": "value-props",
+      "settings": {
+        "heading": "Why Choose Def Audio",
+        "subheading": "We're committed to delivering the highest quality tools for modern music production"
+      }
+    },
+    "email_capture": {
+      "type": "email-capture",
+      "settings": {
+        "heading": "Stay in the Lab",
+        "subtext": "Exclusive sounds, presets, and early access to plugins — free for our members.",
+        "button_text": "Unlock Free Sounds",
+        "disclaimer": "Instant access to free sounds. No spam, unsubscribe anytime."
+      }
+    },
+    "plugin_spotlight": {
+      "type": "plugin-spotlight",
+      "settings": {
+        "heading": "Meet Our Flagship Plugin",
+        "tagline": "The ultimate tool for professional music production",
+        "plugin_name": "Def Audio Pro",
+        "try_url": "/collections/plugins"
+      }
+    },
+    "trusted_artists": {
+      "type": "trusted-artists",
+      "settings": {
+        "heading": "Trusted by Top Artists",
+        "subheading": "See what professional music producers are saying about our sample packs & plugins."
+      }
+    },
+    "footer_contact": {
+      "type": "footer-contact",
+      "settings": {
+        "headline": "Let's build something together.",
+        "subtext": "Questions about our packs or plugins?"
+      }
+    },
   },
   "order": [
     "hero",
-    "featured_products"
+    "featured_products",
+    "brand_story",
+    "value_props",
+    "email_capture",
+    "plugin_spotlight",
+    "trusted_artists",
+    "footer_contact"
   ]
 }

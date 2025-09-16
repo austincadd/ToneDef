@@ -1,0 +1,135 @@
+{% comment %}
+  Plugin Spotlight Section - Flagship Plugin
+{% endcomment %}
+
+<div class="plugin-spotlight-section">
+  <div class="page-width">
+    <div class="plugin-spotlight-content">
+      <div class="plugin-visual">
+        <div class="plugin-mockup">
+          <div class="plugin-ui">
+            <div class="plugin-header">
+              <div class="plugin-title">{{ section.settings.plugin_name | default: "Def Audio Pro" }}</div>
+              <div class="plugin-status">●</div>
+            </div>
+            <div class="plugin-controls">
+              <div class="control-knob"></div>
+              <div class="control-knob"></div>
+              <div class="control-knob"></div>
+              <div class="control-knob"></div>
+            </div>
+            <div class="plugin-waveform">
+              <div class="wave-line"></div>
+              <div class="wave-line"></div>
+              <div class="wave-line"></div>
+              <div class="wave-line"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="plugin-info">
+        <h2 class="plugin-heading">{{ section.settings.heading | default: "Meet Our Flagship Plugin" }}</h2>
+        <p class="plugin-tagline">{{ section.settings.tagline | default: "The ultimate tool for professional music production" }}</p>
+        
+        <div class="plugin-features">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'feature' %}
+                <div class="feature-item">
+                  <div class="feature-icon">✓</div>
+                  <span class="feature-text">{{ block.settings.feature }}</span>
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+        
+        <div class="plugin-actions">
+          <a href="{{ section.settings.try_url | default: '/collections/plugins' }}" class="try-btn">
+            Try Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Plugin Spotlight",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Meet Our Flagship Plugin"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "The ultimate tool for professional music production"
+    },
+    {
+      "type": "text",
+      "id": "plugin_name",
+      "label": "Plugin Name",
+      "default": "Def Audio Pro"
+    },
+    {
+      "type": "text",
+      "id": "try_url",
+      "label": "Try Now URL",
+      "default": "/collections/plugins"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "text",
+          "id": "feature",
+          "label": "Feature",
+          "default": "Professional-grade audio processing"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Plugin Spotlight",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "feature": "Professional-grade audio processing"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature": "Real-time waveform visualization"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature": "One-click preset management"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "feature": "Compatible with all major DAWs"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

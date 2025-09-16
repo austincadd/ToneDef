@@ -9,95 +9,82 @@
     {% if section.settings.subheading != blank %}
       <p class="featured-products-subheading reveal">{{ section.settings.subheading }}</p>
     {% endif %}
-
-    <div class="products-grid">
-      {% for product in collections[section.settings.collection].products limit: section.settings.products_to_show %}
-        <div class="product-card-wrapper reveal">
-          <div class="product-card">
-            <div class="product-card__inner">
-              {% if product.featured_media %}
-                <div class="product-card__media">
-                  <a href="{{ product.url }}" class="product-card__link">
-                    <img 
-                      src="{{ product.featured_media | image_url: width: 400 }}" 
-                      alt="{{ product.featured_media.alt | escape }}"
-                      class="product-card__image"
-                      loading="lazy"
-                    >
-                  </a>
-                  
-                  {% if product.compare_at_price > product.price %}
-                    <div class="product-card__badge">
-                      <span class="badge badge--sale">Sale</span>
-                    </div>
-                  {% endif %}
-                  
-                  <div class="product-card__overlay">
-                    <a href="{{ product.url }}" class="button button--primary buy-button">
-                      View Product
-                    </a>
-                  </div>
-                </div>
-              {% endif %}
-              
-              <div class="product-card__content">
-                <h3 class="product-card__title">
-                  <a href="{{ product.url }}" class="product-card__link">
-                    {{ product.title }}
-                  </a>
-                </h3>
-                
-                {% if product.description != blank %}
-                  <p class="product-card__description">
-                    {{ product.description | strip_html | truncate: 100 }}
-                  </p>
-                {% endif %}
-                
-                <div class="product-card__price">
-                  {% if product.price_varies %}
-                    <span class="price price--from">
-                      From {{ product.price_min | money }}
-                    </span>
-                  {% else %}
-                    <span class="price">
-                      {{ product.price | money }}
-                    </span>
-                    {% if product.compare_at_price > product.price %}
-                      <span class="price price--compare">
-                        {{ product.compare_at_price | money }}
-                      </span>
-                    {% endif %}
-                  {% endif %}
-                </div>
-                
-                <div class="product-card__actions">
-                  <form action="/cart/add" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                    <button 
-                      type="submit" 
-                      name="add" 
-                      class="button button--primary buy-button"
-                      {% unless product.available %}disabled{% endunless %}
-                    >
-                      {% if product.available %}
-                        Add to Cart
-                      {% else %}
-                        Sold Out
-                      {% endif %}
-                    </button>
-                  </form>
-                </div>
-              </div>
+    
+    <!-- Product cards with real product data -->
+    <div class="placeholder-products">
+      {% assign products = collections[section.settings.collection].products %}
+      {% assign products_to_show = section.settings.products_to_show | default: 2 %}
+      
+      {% for product in products limit: products_to_show %}
+        <div class="placeholder-product-card">
+          {% if product.featured_media %}
+            <div class="placeholder-image" style="background: none; padding: 0;">
+              <img 
+                src="{{ product.featured_media | image_url: width: 400 }}" 
+                alt="{{ product.featured_media.alt | escape }}"
+                style="width: 100%; height: 100%; object-fit: cover; border-radius: 15px 15px 0 0;"
+                loading="lazy"
+              >
             </div>
+          {% else %}
+            <div class="placeholder-image">
+              <span class="placeholder-icon">🎵</span>
+            </div>
+          {% endif %}
+          
+          <div class="placeholder-content">
+            <h3>{{ product.title | default: 'Sample Pack' }}</h3>
+            <p>{{ product.description | strip_html | truncate: 100 | default: 'Premium sounds for your next hit' }}</p>
+            <div class="placeholder-price">
+              {% if product.price %}
+                {{ product.price | money }}
+              {% else %}
+                $29.99
+              {% endif %}
+            </div>
+            <a href="{{ product.url | default: '#' }}" class="button button--primary">
+              {% if product.available %}
+                Get Pack
+              {% else %}
+                Coming Soon
+              {% endif %}
+            </a>
           </div>
         </div>
       {% endfor %}
+      
+      <!-- Fallback if no products found -->
+      {% if products.size == 0 %}
+        <div class="placeholder-product-card">
+          <div class="placeholder-image">
+            <span class="placeholder-icon">🎵</span>
+          </div>
+          <div class="placeholder-content">
+            <h3>Euphoria Pack</h3>
+            <p>Melodic and uplifting sounds for your next hit</p>
+            <div class="placeholder-price">$29.99</div>
+            <button class="button button--primary" disabled>Coming Soon</button>
+          </div>
+        </div>
+        
+        <div class="placeholder-product-card">
+          <div class="placeholder-image">
+            <span class="placeholder-icon">🎵</span>
+          </div>
+          <div class="placeholder-content">
+            <h3>Paradox Pack</h3>
+            <p>Dark and experimental sounds for the avant-garde</p>
+            <div class="placeholder-price">$29.99</div>
+            <button class="button button--primary" disabled>Coming Soon</button>
+          </div>
+        </div>
+      {% endif %}
     </div>
     
     {% if section.settings.show_view_all %}
       <div class="featured-products-footer reveal">
-        <a href="{{ collections[section.settings.collection].url }}" class="button button--secondary">
-          {{ section.settings.view_all_text | default: 'View All Products' }}
+        <a href="/collections/all" class="button button--secondary">
+          {{ section.settings.view_all_text | default: 'View All Packs' }}
         </a>
       </div>
     {% endif %}

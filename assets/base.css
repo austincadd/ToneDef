@@ -1,3 +1,6 @@
+/* Import Def Audio Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
   --alpha-button-background: 1;
   --alpha-button-border: 1;
@@ -7,13 +10,254 @@
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
   
-  /* ToneDef Brand Overrides */
-  --color-background: 13, 15, 13; /* #0d0f0d */
-  --color-foreground: 102, 255, 204; /* #66ffcc */
+  /* Def Audio Brand Colors */
+  --color-background: 80, 85, 80; /* #505550 - even lighter background for better readability */
+  --color-foreground: 255, 255, 255; /* #ffffff - white text */
+  --color-foreground-secondary: 156, 163, 175; /* #9ca3af - grey text */
+  --color-accent-primary: 26, 61, 47; /* #1a3d2f - forest green */
+  --color-accent-secondary: 102, 255, 204; /* #66ffcc - neon teal */
   --color-button: 26, 61, 47; /* #1a3d2f */
   --color-button-text: 102, 255, 204; /* #66ffcc */
   --color-link: 102, 255, 204; /* #66ffcc */
+  --color-success: 16, 185, 129; /* #10b981 */
+  --color-warning: 245, 158, 11; /* #f59e0b */
+  --color-error: 239, 68, 68; /* #ef4444 */
+  
+  /* Def Audio Typography */
+  --font-heading: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+  /* Typography Scale */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-5xl: 3rem; /* 48px */
+  --font-size-6xl: 3.75rem; /* 60px */
+  --font-size-7xl: 4.5rem; /* 72px */
+  
+  /* Animation & Transitions */
+  --transition-fast: 0.15s ease-out;
+  --transition-base: 0.3s ease-out;
+  --transition-slow: 0.5s ease-out;
+  --transition-bounce: 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  
+  /* Neon Effects */
+  --neon-glow-primary: 0 0 20px rgba(102, 255, 204, 0.5);
+  --neon-glow-secondary: 0 0 30px rgba(102, 255, 204, 0.3);
+  --neon-text-shadow: 0 0 10px rgba(102, 255, 204, 0.8);
+  
+  /* Spacing Scale */
+  --space-xs: 0.25rem; /* 4px */
+  --space-sm: 0.5rem; /* 8px */
+  --space-md: 1rem; /* 16px */
+  --space-lg: 1.5rem; /* 24px */
+  --space-xl: 2rem; /* 32px */
+  --space-2xl: 3rem; /* 48px */
+  --space-3xl: 4rem; /* 64px */
+  --space-4xl: 6rem; /* 96px */
+  --space-5xl: 8rem; /* 128px */
+  
+  /* Border Radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+  
+  /* Z-Index Scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1010;
+  --z-fixed: 1020;
+  --z-modal-backdrop: 1030;
+  --z-modal: 1040;
+  --z-popover: 1050;
+  --z-tooltip: 1060;
 }
+
+/* ===== TONEDEF FOUNDATIONAL STYLES ===== */
+
+/* Base Typography */
+body {
+  font-family: var(--font-body);
+  color: rgb(var(--color-foreground));
+  background-color: rgb(var(--color-background));
+  line-height: 1.6;
+  font-weight: 400;
+  scroll-behavior: smooth; /* Enable smooth scrolling */
+}
+
+/* Smooth scroll for contact links */
+a[href*="#contact"], a[href*="contact"] {
+  cursor: pointer;
+}
+
+/* Smooth scroll utility class */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+
+/* Heading Styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  color: rgb(var(--color-foreground));
+  margin: 0 0 var(--space-md) 0;
+}
+
+h1 { font-size: var(--font-size-5xl); font-weight: 700; }
+h2 { font-size: var(--font-size-4xl); font-weight: 600; }
+h3 { font-size: var(--font-size-3xl); font-weight: 600; }
+h4 { font-size: var(--font-size-2xl); font-weight: 500; }
+h5 { font-size: var(--font-size-xl); font-weight: 500; }
+h6 { font-size: var(--font-size-lg); font-weight: 500; }
+
+/* Responsive Typography */
+@media screen and (min-width: 750px) {
+  h1 { font-size: var(--font-size-6xl); }
+  h2 { font-size: var(--font-size-5xl); }
+  h3 { font-size: var(--font-size-4xl); }
+}
+
+@media screen and (min-width: 990px) {
+  h1 { font-size: var(--font-size-7xl); }
+}
+
+/* Neon Glow Utilities */
+.neon-glow {
+  box-shadow: var(--neon-glow-primary);
+  transition: box-shadow var(--transition-base);
+}
+
+.neon-glow:hover {
+  box-shadow: var(--neon-glow-secondary);
+}
+
+.neon-text {
+  color: rgb(var(--color-accent-secondary));
+  text-shadow: var(--neon-text-shadow);
+}
+
+.neon-border {
+  border: 1px solid rgb(var(--color-accent-secondary));
+  box-shadow: 
+    inset 0 0 10px rgba(102, 255, 204, 0.1),
+    0 0 10px rgba(102, 255, 204, 0.3);
+}
+
+/* Animation Keyframes */
+@keyframes pulse-neon {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(102, 255, 204, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(102, 255, 204, 0.8);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(102, 255, 204, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(102, 255, 204, 1);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.transition-fast { transition: all var(--transition-fast); }
+.transition-base { transition: all var(--transition-base); }
+.transition-slow { transition: all var(--transition-slow); }
+
+.animate-pulse-neon {
+  animation: pulse-neon 2s ease-in-out infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.6s ease-out;
+}
+
+/* Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--transition-base);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background-color: rgb(var(--color-button));
+  color: rgb(var(--color-button-text));
+  border: 1px solid rgb(var(--color-accent-secondary));
+}
+
+.btn-primary:hover {
+  background-color: rgba(var(--color-accent-secondary), 0.1);
+  box-shadow: var(--neon-glow-primary);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: rgb(var(--color-accent-secondary));
+  border: 1px solid rgb(var(--color-accent-secondary));
+}
+
+.btn-secondary:hover {
+  background-color: rgb(var(--color-accent-secondary));
+  color: rgb(var(--color-background));
+  box-shadow: var(--neon-glow-primary);
+}
+
+/* ===== END TONEDEF FOUNDATIONAL STYLES ===== */
 
 .product-card-wrapper .card,
 .contains-card--product {
@@ -1286,7 +1530,7 @@ button.shopify-payment-button__button--unbranded {
     0 0 0 calc(var(--buttons-border-width) + 1px) rgba(var(--color-button), var(--alpha-button-background));
 }
 
-/* ToneDef Neon Glow Effects */
+/* Def Audio Neon Glow Effects */
 .button:not([disabled]):hover,
 .shopify-challenge__button:hover,
 .customer button:hover,
@@ -2621,7 +2865,7 @@ input[type='checkbox'] {
   width: 100%;
   display: block;
   position: absolute;
-  background: rgba(var(--color-foreground), 0.5);
+  background: rgba(var(--color-foreground), 0.2);
 }
 
 .header__icon--account shop-user-avatar {
@@ -2858,16 +3102,15 @@ details[open] > .header__submenu {
 }
 
 .header__menu-item:hover span {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
+  text-decoration: none;
 }
 
 details[open] > .header__menu-item {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 details[open]:hover > .header__menu-item {
-  text-decoration-thickness: 0.2rem;
+  text-decoration: none;
 }
 
 details[open] > .header__menu-item .icon-caret {
@@ -2877,12 +3120,11 @@ details[open] > .header__menu-item .icon-caret {
 .header__active-menu-item {
   transition: text-decoration-thickness var(--duration-short) ease;
   color: rgb(var(--color-foreground));
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
+  text-decoration: none;
 }
 
 .header__menu-item:hover .header__active-menu-item {
-  text-decoration-thickness: 0.2rem;
+  text-decoration: none;
 }
 
 .header__submenu {
@@ -2920,7 +3162,7 @@ details[open] > .header__menu-item .icon-caret {
 }
 
 .header__submenu .header__menu-item:hover {
-  text-decoration-line: underline;
+  text-decoration: none;
 }
 
 .header__menu-item .icon-caret {
@@ -2985,7 +3227,7 @@ details-disclosure > details {
 
 .gradient {
   background: var(--tonedef-dark);
-  background: linear-gradient(135deg, var(--tonedef-dark) 0%, rgba(26, 61, 47, 0.1) 100%);
+  background: linear-gradient(to top, var(--tonedef-dark) 0%, rgba(26, 61, 47, 0.03) 100%);
   background-attachment: fixed;
 }
 

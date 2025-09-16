@@ -12,28 +12,14 @@
   
   <div class="page-width">
     <div class="hero-content">
-      <div class="hero-text">
-        <h1 class="hero-title hxxl">
-          {{ section.settings.heading | default: 'Professional Music Production Tools' }}
+      <div class="hero-text" style="background: rgba(0,0,0,0.8); padding: 1rem; border-radius: 6px; text-align: center; border: 1px solid #66ffcc; position: relative; z-index: 10; width: 100%; max-width: 1200px; margin: 0 auto;">
+        <h1 style="color: #66ffcc !important; font-size: 1.8rem !important; margin-bottom: 0.5rem !important; font-weight: 700 !important; line-height: 1.2 !important; text-shadow: 0 0 15px rgba(102, 255, 204, 0.8) !important; display: block !important; visibility: visible !important; width: 100%; text-align: center !important;">
+          Your Studio, Upgraded—Pro Sounds at Your Fingertips.
         </h1>
         
-        <p class="hero-subtitle">
-          {{ section.settings.subheading | default: 'Elevate your sound with premium sample packs, cutting-edge plugins, and exclusive producer resources.' }}
+        <p style="color: #ffffff !important; font-size: 1rem !important; margin-bottom: 0 !important; line-height: 1.3 !important; text-shadow: 0 0 10px rgba(255, 255, 255, 0.8) !important; display: block !important; visibility: visible !important; width: 100%; text-align: center !important;">
+          Explore premium sample packs and VST presets built for modern producers.
         </p>
-        
-        <div class="hero-cta">
-          <a href="{{ section.settings.cta_url | default: '/collections/all' }}" 
-             class="button button--primary buy-button">
-            {{ section.settings.cta_text | default: 'Explore Products' }}
-          </a>
-          
-          {% if section.settings.secondary_cta_text != blank %}
-            <a href="{{ section.settings.secondary_cta_url }}" 
-               class="button button--secondary">
-              {{ section.settings.secondary_cta_text }}
-            </a>
-          {% endif %}
-        </div>
       </div>
       
       {% if section.settings.featured_image %}

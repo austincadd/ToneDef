@@ -1,6 +1,5 @@
 {% comment %}theme-check-disable UndefinedObject{% endcomment %}
 {{ 'section-footer.css' | asset_url | stylesheet_tag }}
-{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
@@ -28,6 +27,7 @@
 {%- endstyle -%}
 
 <footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
+  
   {%- liquid
     assign has_social_icons = true
     if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
@@ -38,12 +38,11 @@
       assign brand_empty = true
     endif
 
-    if section.blocks.size == 1 and section.blocks[0].type == 'brand_information' and brand_empty and has_social_icons == false and section.settings.newsletter_enable == false and section.settings.enable_follow_on_shop == false
+    if section.blocks.size == 1 and section.blocks[0].type == 'brand_information' and brand_empty and has_social_icons == false and section.settings.enable_follow_on_shop == false
       assign only_empty_brand = true
     endif
   -%}
   {%- if section.blocks.size > 0
-    or section.settings.newsletter_enable
     or section.settings.show_social
     and has_social_icons == true
     or section.settings.enable_follow_on_shop
@@ -159,93 +158,15 @@
           </div>
         {%- endif -%}
 
-        <div
-          class="footer-block--newsletter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-          {% endif %}
-        >
-          {%- if section.settings.newsletter_enable -%}
-            <div class="footer-block__newsletter">
-              {%- if section.settings.newsletter_heading != blank -%}
-                <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
-              {%- endif -%}
-              {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
-                <input type="hidden" name="contact[tags]" value="newsletter">
-                <div class="newsletter-form__field-wrapper">
-                  <div class="field">
-                    <input
-                      id="NewsletterForm--{{ section.id }}"
-                      type="email"
-                      name="contact[email]"
-                      class="field__input"
-                      value="{{ form.email }}"
-                      aria-required="true"
-                      autocorrect="off"
-                      autocapitalize="off"
-                      autocomplete="email"
-                      {% if form.errors %}
-                        autofocus
-                        aria-invalid="true"
-                        aria-describedby="ContactFooter-error"
-                      {% elsif form.posted_successfully? %}
-                        aria-describedby="ContactFooter-success"
-                      {% endif %}
-                      placeholder="{{ 'newsletter.label' | t }}"
-                      required
-                    >
-                    <label class="field__label" for="NewsletterForm--{{ section.id }}">
-                      {{ 'newsletter.label' | t }}
-                    </label>
-                    <button
-                      type="submit"
-                      class="newsletter-form__button field__button"
-                      name="commit"
-                      id="Subscribe"
-                      aria-label="{{ 'newsletter.button_label' | t }}"
-                    >
-                      <span class="svg-wrapper">
-                        {{- 'icon-arrow.svg' | inline_asset_content -}}
-                      </span>
-                    </button>
-                  </div>
-                  {%- if form.errors -%}
-                    <small class="newsletter-form__message form__message" id="ContactFooter-error">
-                      <span class="svg-wrapper">
-                        {{- 'icon-error.svg' | inline_asset_content -}}
-                      </span>
-                      {{- form.errors.translated_fields.email | capitalize }}
-                      {{ form.errors.messages.email -}}
-                    </small>
-                  {%- endif -%}
-                </div>
-                {%- if form.posted_successfully? -%}
-                  <h3
-                    class="newsletter-form__message newsletter-form__message--success form__message"
-                    id="ContactFooter-success"
-                    tabindex="-1"
-                    autofocus
-                  >
-                    <span class="svg-wrapper">
-                      {{- 'icon-success.svg' | inline_asset_content -}}
-                    </span>
-                    {{- 'newsletter.success' | t }}
-                  </h3>
-                {%- endif -%}
-              {%- endform -%}
-            </div>
-          {%- endif -%}
+        {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
+          <div class="footer__follow-on-shop">
+            {{ shop | login_button: action: 'follow' }}
+          </div>
+        {%- endif -%}
 
-          {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
-            <div class="footer__follow-on-shop">
-              {{ shop | login_button: action: 'follow' }}
-            </div>
-          {%- endif -%}
-
-          {%- if section.settings.show_social and has_social_icons -%}
-            {%- render 'social-icons', class: 'footer__list-social' -%}
-          {%- endif -%}
-        </div>
+        {%- if section.settings.show_social and has_social_icons -%}
+          {%- render 'social-icons', class: 'footer__list-social' -%}
+        {%- endif -%}
       </div>
     {%- endunless -%}
   {%- endif -%}
@@ -319,7 +240,80 @@
       </div>
     </div>
   </div>
+  
+  <!-- Animated Waveform Canvas -->
+  <canvas id="footer-waveform" class="footer-waveform"></canvas>
 </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('Footer waveform script starting...');
+  const canvas = document.getElementById('footer-waveform');
+  console.log('Footer canvas found:', canvas);
+  
+  if (!canvas) {
+    console.error('Footer canvas not found!');
+    return;
+  }
+  
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    console.error('Footer canvas context not available!');
+    return;
+  }
+  
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = 120; // Slightly smaller for footer
+  console.log('Footer canvas size:', width, 'x', height);
+  
+  const waves = 4; // Fewer waves for footer
+  const points = 80; // Fewer points for performance
+  let animationId;
+  
+  function drawWave(time) {
+    ctx.clearRect(0, 0, width, height);
+    
+    for (let i = 0; i < waves; i++) {
+      ctx.beginPath();
+      // Teal colors matching brand
+      const hue = 180 + i * 10; // Teal range
+      ctx.strokeStyle = `hsl(${hue}, 100%, 60%)`;
+      ctx.lineWidth = 1.5;
+      ctx.shadowColor = `hsl(${hue}, 100%, 60%)`;
+      ctx.shadowBlur = 8;
+      
+      for (let j = 0; j <= points; j++) {
+        const x = (j / points) * width;
+        const y = height / 2 + 
+          Math.sin((j / points) * Math.PI * 2 + time * 0.0008 + i) * // Slower animation
+          15 * Math.sin(time * 0.0008 + i); // Smaller amplitude for footer
+        
+        if (j === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+    
+    animationId = requestAnimationFrame(drawWave);
+  }
+  
+  drawWave(0);
+  
+  const handleResize = () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = 120;
+  };
+  
+  window.addEventListener('resize', handleResize);
+  
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+    }
+  });
+});
+</script>
 
 {% schema %}
 {
@@ -438,7 +432,7 @@
     {
       "type": "checkbox",
       "id": "newsletter_enable",
-      "default": true,
+      "default": false,
       "label": "t:sections.footer.settings.newsletter_enable.label"
     },
     {

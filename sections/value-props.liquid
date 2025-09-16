@@ -1,0 +1,106 @@
+{% comment %}
+  Value Props Section - Why Choose Us
+{% endcomment %}
+
+<div class="value-props-section">
+  <div class="page-width">
+    <div class="value-props-heading">
+      <h2>{{ section.settings.heading | default: "Why Choose Def Audio" }}</h2>
+      <p>{{ section.settings.subheading | default: "We're committed to delivering the highest quality tools for modern music production" }}</p>
+    </div>
+    
+    <div class="value-props-grid">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'value_prop' %}
+            <div class="value-prop-card" data-aos="fade-up" data-aos-delay="{{ forloop.index0 | times: 100 }}">
+              <div class="value-prop-icon">
+                {{ block.settings.icon }}
+              </div>
+              <h3 class="value-prop-title">{{ block.settings.title }}</h3>
+              <p class="value-prop-description">{{ block.settings.description }}</p>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Value Props",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Choose Def Audio"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "We're committed to delivering the highest quality tools for modern music production"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value_prop",
+      "name": "Value Proposition",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (Emoji)",
+          "default": "🎧"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Industry Quality"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Professional-grade, royalty-free sounds crafted by industry veterans"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Value Props",
+      "blocks": [
+        {
+          "type": "value_prop",
+          "settings": {
+            "icon": "🎧",
+            "title": "Industry Quality",
+            "description": "Professional-grade, royalty-free sounds crafted by industry veterans"
+          }
+        },
+        {
+          "type": "value_prop",
+          "settings": {
+            "icon": "⚡",
+            "title": "Instant Download",
+            "description": "Get immediate access to your files after purchase, no waiting"
+          }
+        },
+        {
+          "type": "value_prop",
+          "settings": {
+            "icon": "🔊",
+            "title": "Modern Genres",
+            "description": "Crafted specifically for today's most popular music styles"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

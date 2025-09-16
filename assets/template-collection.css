@@ -1,3 +1,50 @@
+/* Hide "Products" heading on collection pages - Very aggressive approach */
+.collection .collection-hero__title + *,
+.collection .page-width h1:first-child,
+.collection .page-width h2:first-child,
+.collection .facets__heading,
+.collection .facets__label,
+.collection .title-wrapper h2,
+.collection .title-wrapper h1,
+.collection h1,
+.collection h2,
+.collection h3,
+.collection .title,
+.collection .heading,
+.collection .section-header,
+.collection .collection-header,
+.collection .page-header,
+.collection .main-collection-product-grid h1,
+.collection .main-collection-product-grid h2,
+.collection .main-collection-product-grid h3,
+.collection .main-collection-product-grid .title,
+.collection .main-collection-product-grid .heading,
+.collection .collection-hero__title,
+.collection .collection-hero h1,
+.collection .collection-hero h2,
+.collection .collection-hero h3 {
+  display: none !important;
+}
+
+/* Hide any text that might be showing "Products" */
+.collection .page-width > *:first-child:not(.collection-hero):not(.product-grid-container) {
+  display: none !important;
+}
+
+/* More aggressive hiding of any heading that might show "Products" */
+.collection .main-collection-product-grid .page-width h1,
+.collection .main-collection-product-grid .page-width h2,
+.collection .main-collection-product-grid .page-width h3,
+.collection .main-collection-product-grid .page-width .title,
+.collection .main-collection-product-grid .page-width .heading {
+  display: none !important;
+}
+
+/* Hide any element that might contain "Products" text */
+.collection .page-width > *:not(.collection-hero):not(.product-grid-container):not(.facets-wrapper) {
+  display: none !important;
+}
+
 @media screen and (max-width: 749px) {
   .collection .grid__item:only-child {
     flex: 0 0 100%;

@@ -1,0 +1,110 @@
+{% comment %}
+  Brand Story Section - "Built by Producers, for Producers"
+{% endcomment %}
+
+<div class="brand-story-section">
+  <div class="page-width">
+    <div class="brand-story-content">
+      <div class="brand-story-text">
+        <h2 class="brand-story-heading">{{ section.settings.heading | default: "Built by Producers, for Producers" }}</h2>
+        <p class="brand-story-description">{{ section.settings.description | default: "Every sound in our collection is crafted by industry veterans who understand what producers need to create their next hit. We're not just selling samples and plugins – we're sharing the tools that helped us build our own careers in music." }}</p>
+        <div class="brand-story-stats">
+          {% for block in section.blocks %}
+            {% case block.type %}
+              {% when 'stat' %}
+                <div class="stat-item">
+                  <div class="stat-number">{{ block.settings.number }}</div>
+                  <div class="stat-label">{{ block.settings.label }}</div>
+                </div>
+            {% endcase %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="brand-story-visual">
+        <div class="daw-visual">
+          <div class="waveform-animation">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+          </div>
+          <div class="producer-icon">🎧</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand Story",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Built by Producers, for Producers"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Every sound in our collection is crafted by industry veterans who understand what producers need to create their next hit. We're not just selling samples and plugins – we're sharing the tools that helped us build our own careers in music."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Statistic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Number",
+          "default": "1000+"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Samples"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Story",
+      "blocks": [
+        {
+          "type": "stat",
+          "settings": {
+            "number": "1000+",
+            "label": "Samples"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "50+",
+            "label": "Artists"
+          }
+        },
+        {
+          "type": "stat",
+          "settings": {
+            "number": "10K+",
+            "label": "Producers"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

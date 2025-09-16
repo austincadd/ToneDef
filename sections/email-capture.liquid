@@ -1,0 +1,138 @@
+{% comment %}
+  Stay in the Lab Section - Exclusive Content & Early Access
+{% endcomment %}
+
+<div class="stay-in-lab-section">
+  <div class="page-width">
+    <div class="lab-content">
+      <div class="lab-header">
+        <div class="lab-icon">⚡</div>
+        <h2 class="lab-heading">{{ section.settings.heading | default: "Stay in the Lab" }}</h2>
+        <p class="lab-subtext">{{ section.settings.subtext | default: "Exclusive sounds, presets, and early access to plugins — free for our members." }}</p>
+      </div>
+      
+      <div class="lab-benefits">
+        <span class="benefit-text">🎁 Free sounds • ⚡ Early access • 🔥 Beta plugins</span>
+      </div>
+      
+      <div class="lab-form-container">
+        <form class="lab-form" action="#" method="post" id="lab-form" onsubmit="submitLabForm(event)">
+          <div class="form-group">
+            <input 
+              type="email" 
+              name="email" 
+              placeholder="Enter your email address" 
+              class="lab-email-input"
+              required
+            >
+            <button type="submit" class="lab-join-btn">
+              <span class="btn-text">{{ section.settings.button_text | default: "Unlock Free Sounds" }}</span>
+              <div class="btn-pulse"></div>
+            </button>
+          </div>
+          <p class="lab-disclaimer">{{ section.settings.disclaimer | default: "Instant access to free sounds. No spam, unsubscribe anytime." }}</p>
+        </form>
+        
+        <!-- Success Message -->
+        <div id="lab-success" class="lab-success" style="display: none;">
+          <div class="success-icon">✓</div>
+          <div class="success-text">
+            <h3>Welcome to the Lab!</h3>
+            <p>Check your email for instant access to your free sounds.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Animated Background Elements -->
+    <div class="lab-bg-elements">
+      <div class="sound-wave"></div>
+      <div class="sound-wave"></div>
+      <div class="sound-wave"></div>
+      <div class="sound-wave"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function submitLabForm(event) {
+  event.preventDefault();
+  
+  const form = document.getElementById('lab-form');
+  const successMessage = document.getElementById('lab-success');
+  const joinBtn = form.querySelector('.lab-join-btn');
+  
+  // Add loading state
+  joinBtn.classList.add('loading');
+  
+  // Simulate form submission (replace with actual form handling)
+  setTimeout(() => {
+    form.style.display = 'none';
+    successMessage.style.display = 'flex';
+    
+    // Scroll to contact section after showing success
+    setTimeout(() => {
+      const contactSection = document.getElementById('contact-section');
+      if (contactSection) {
+        contactSection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 1000);
+    
+    // Reset form after 5 seconds
+    setTimeout(() => {
+      form.style.display = 'block';
+      successMessage.style.display = 'none';
+      form.reset();
+      joinBtn.classList.remove('loading');
+    }, 5000);
+  }, 2000);
+}
+</script>
+
+{% schema %}
+{
+  "name": "Stay in the Lab",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Stay in the Lab"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Exclusive sounds, presets, and early access to plugins — free for our members."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Unlock Free Sounds"
+    },
+    {
+      "type": "text",
+      "id": "form_action",
+      "label": "Form Action URL",
+      "default": "/contact#contact_form"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Disclaimer",
+      "default": "Instant access to free sounds. No spam, unsubscribe anytime."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Stay in the Lab"
+    }
+  ]
+}
+{% endschema %}

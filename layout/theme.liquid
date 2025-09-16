@@ -15,10 +15,10 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
     
-    <!-- ToneDef Brand Fonts -->
+    <!-- Def Audio Brand Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <title>
       {{ page_title }}
@@ -40,7 +40,7 @@
     <script src="{{ 'details-modal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'search-form.js' | asset_url }}" defer="defer"></script>
     
-    <!-- ToneDef Animation Libraries -->
+    <!-- Def Audio Animation Libraries -->
     <script src="https://cdn.skypack.dev/gsap@3.12.2" defer></script>
     <script src="https://cdn.skypack.dev/gsap@3.12.2/ScrollTrigger" defer></script>
     <script src="https://cdn.skypack.dev/swup@3.0.6" defer></script>
@@ -106,8 +106,8 @@
       {% endfor %}
 
       {{ scheme_classes | prepend: 'body' }} {
-        color: rgba(var(--color-foreground), 0.75);
-        background-color: var(--tonedef-dark);
+        color: rgb(var(--color-foreground));
+        background-color: rgb(var(--color-background));
       }
 
       :root {
@@ -120,13 +120,13 @@
         --font-heading-style: {{ settings.type_header_font.style }};
         --font-heading-weight: {{ settings.type_header_font.weight }};
 
-        /* ToneDef Brand Colors */
-        --tonedef-dark: #0d0f0d;
+        /* Def Audio Brand Colors */
+        --tonedef-dark: #3a3d3a;
         --tonedef-forest: #1a3d2f;
         --tonedef-neon: #66ffcc;
         
-        /* ToneDef Brand Fonts */
-        --tonedef-heading-font: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif;
+        /* Def Audio Brand Fonts */
+        --tonedef-heading-font: 'Poppins', 'Helvetica Neue', Arial, sans-serif;
         --tonedef-body-font: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 
         --font-body-scale: {{ settings.body_scale | divided_by: 100.0 }};
@@ -263,7 +263,7 @@
         font-size: 1.5rem;
         letter-spacing: 0.06rem;
         line-height: calc(1 + 0.8 / var(--font-body-scale));
-        font-family: var(--tonedef-body-font);
+        font-family: var(--font-body);
         font-style: var(--font-body-style);
         font-weight: var(--font-body-weight);
       }
@@ -276,6 +276,11 @@
     {% endstyle %}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'section-brand-story.css' | asset_url | stylesheet_tag }}
+    {{ 'section-value-props.css' | asset_url | stylesheet_tag }}
+    {{ 'section-email-capture.css' | asset_url | stylesheet_tag }}
+    {{ 'section-plugin-spotlight.css' | asset_url | stylesheet_tag }}
+    {{ 'section-footer-contact.css' | asset_url | stylesheet_tag }}
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}
@@ -392,5 +397,114 @@
     {%- if settings.cart_type == 'drawer' -%}
       <script src="{{ 'cart-drawer.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
+    
+    <!-- Contact Smooth Scroll -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Contact scroll script loaded');
+      
+      // Check if contact section exists
+      const contactSection = document.getElementById('contact-section');
+      console.log('Contact section found:', contactSection);
+      
+      // Handle any contact links to scroll to contact section
+      const contactLinks = document.querySelectorAll('a[href*="contact"], a[href*="#contact"]');
+      console.log('Contact links found:', contactLinks.length);
+      contactLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          console.log('Contact link clicked');
+          if (contactSection) {
+            contactSection.scrollIntoView({ 
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+      
+      // Handle contact tabs/accordions that might contain contact content
+      const contactTabs = document.querySelectorAll('[data-contact-tab], .contact-tab');
+      console.log('Contact tabs found:', contactTabs.length);
+      contactTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+          console.log('Contact tab clicked');
+          // Small delay to allow tab to open first
+          setTimeout(() => {
+            if (contactSection) {
+              contactSection.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          }, 100);
+        });
+      });
+      
+      // Handle collapsible tabs with contact content
+      const collapsibleTabs = document.querySelectorAll('.product__accordion summary, .accordion summary');
+      console.log('Collapsible tabs found:', collapsibleTabs.length);
+      collapsibleTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+          const text = this.textContent.toLowerCase();
+          console.log('Tab clicked:', text);
+          if (text.includes('contact') || text.includes('support') || text.includes('help')) {
+            console.log('Contact-related tab detected, scrolling...');
+            setTimeout(() => {
+              if (contactSection) {
+                contactSection.scrollIntoView({ 
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }, 200);
+          }
+        });
+      });
+      
+      // Additional check for any element with contact in the text
+      const allElements = document.querySelectorAll('*');
+      allElements.forEach(element => {
+        const text = element.textContent.toLowerCase();
+        if (text.includes('contact') && (element.tagName === 'SUMMARY' || element.tagName === 'BUTTON' || element.classList.contains('tab'))) {
+          console.log('Found potential contact element:', element);
+          element.addEventListener('click', function(e) {
+            console.log('Potential contact element clicked');
+            setTimeout(() => {
+              if (contactSection) {
+                contactSection.scrollIntoView({ 
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }, 200);
+          });
+        }
+      });
+      
+      // Add a test function to manually scroll to contact
+      window.scrollToContact = function() {
+        console.log('Manual scroll to contact triggered');
+        if (contactSection) {
+          contactSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        } else {
+          console.error('Contact section not found!');
+        }
+      };
+      
+      // Add a test button for debugging (remove in production)
+      if (window.location.hostname === 'localhost' || window.location.hostname.includes('myshopify')) {
+        const testButton = document.createElement('button');
+        testButton.textContent = 'Test Contact Scroll';
+        testButton.style.cssText = 'position: fixed; top: 10px; right: 10px; z-index: 9999; background: red; color: white; padding: 10px;';
+        testButton.onclick = window.scrollToContact;
+        document.body.appendChild(testButton);
+      }
+    });
+    </script>
+    
   </body>
 </html>

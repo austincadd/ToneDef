@@ -1,0 +1,31 @@
+{% comment %}
+  Artist Image Snippet - Handles artist images uploaded through Shopify admin
+{% endcomment %}
+
+{% comment %} Map artist names to their uploaded file names {% endcomment %}
+{% case artist_name %}
+  {% when 'Cloonee' %}
+    {% assign image_file = 'cloonee.jpg' %}
+  {% when 'Dom Dolla' %}
+    {% assign image_file = 'dom.jpg' %}
+  {% when 'Maup' %}
+    {% assign image_file = 'maup.jpg' %}
+  {% when 'Max' %}
+    {% assign image_file = 'max.jpg' %}
+  {% else %}
+    {% assign image_file = 'placeholder-artist.jpg' %}
+{% endcase %}
+
+{% comment %} Try multiple methods to get the image URL {% endcomment %}
+{% assign image_url = image_file | file_url %}
+
+{% comment %} Fallback to asset_url if file_url doesn't work {% endcomment %}
+{% if image_url == blank or image_url contains 'file-not-found' %}
+  {% assign image_url = image_file | asset_url %}
+{% endif %}
+
+<img src="{{ image_url }}" 
+     alt="{{ artist_name }}" 
+     class="artist-image"
+     loading="lazy"
+     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDMwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjMzMzMzMzIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjE1MCIgcj0iNTAiIGZpbGw9IiM2NmZmY2MiIG9wYWNpdHk9IjAuMyIvPgo8dGV4dCB4PSIxNTAiIHk9IjE2MCIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNjZmZmNjIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BcnRpc3Q8L3RleHQ+Cjwvc3ZnPgo='">

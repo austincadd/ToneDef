@@ -1,0 +1,300 @@
+/* Def Audio Footer Contact Section */
+.footer-contact-section {
+  background: linear-gradient(to bottom, #3a3d3a 0%, #1a3d2f 50%, #3a3d3a 100%) !important;
+  padding: 4rem 0 6rem 0 !important; /* Increased bottom padding to reach bottom */
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(102, 255, 204, 0.2);
+  margin-top: -1px !important; /* Pull up to connect with trusted artists section */
+  margin-bottom: 0 !important; /* Remove bottom margin */
+  min-height: 50vh !important; /* Ensure it takes up significant space */
+}
+
+/* Override footer gradient when contact section is present */
+.footer .footer-contact-section {
+  background: linear-gradient(to bottom, #3a3d3a 0%, #1a3d2f 50%, #3a3d3a 100%) !important;
+}
+
+/* Force override for any conflicting styles */
+footer .footer-contact-section,
+.footer .footer-contact-section {
+  background: linear-gradient(to bottom, #3a3d3a 0%, #1a3d2f 50%, #3a3d3a 100%) !important;
+  margin-top: -1px !important;
+  margin-bottom: 0 !important;
+}
+
+.footer-contact-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  position: relative;
+  z-index: 2;
+  min-height: 40vh; /* Ensure content has good vertical space */
+  padding: 2rem 0; /* Add some internal padding */
+}
+
+.contact-text {
+  flex: 1;
+  max-width: 400px;
+}
+
+.contact-headline {
+  font-family: var(--tonedef-heading-font);
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--tonedef-neon);
+  margin: 0 0 1rem 0;
+  line-height: 1.2;
+  text-shadow: 0 0 15px rgba(102, 255, 204, 0.3);
+}
+
+.contact-subtext {
+  font-family: var(--tonedef-body-font);
+  font-size: 1.6rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.contact-form-container {
+  flex: 1;
+  max-width: 500px;
+}
+
+.footer-contact-form {
+  display: flex;
+  background: rgba(13, 15, 13, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(102, 255, 204, 0.3);
+  border-radius: 1rem;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.footer-contact-form:hover {
+  border-color: rgba(102, 255, 204, 0.5);
+  box-shadow: 0 0 20px rgba(102, 255, 204, 0.2);
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.message-input {
+  background: transparent;
+  border: none;
+  color: white;
+  font-family: var(--tonedef-body-font);
+  font-size: 1.4rem;
+  outline: none;
+  transition: all 0.3s ease;
+  flex: 1;
+  min-width: 300px;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(102, 255, 204, 0.3);
+  resize: none;
+  min-height: 20px;
+  max-height: 80px;
+}
+
+.message-input:focus {
+  border-bottom-color: var(--tonedef-neon);
+  box-shadow: 0 1px 0 rgba(102, 255, 204, 0.5);
+}
+
+.message-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.send-btn {
+  position: relative;
+  background: var(--tonedef-neon);
+  color: var(--tonedef-dark);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  font-family: var(--tonedef-body-font);
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  min-width: 100px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.send-btn:hover {
+  background: rgba(102, 255, 204, 0.9);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(102, 255, 204, 0.3);
+}
+
+.send-btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.send-btn.loading .btn-text {
+  opacity: 0;
+}
+
+.btn-ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.footer-success {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(26, 61, 47, 0.6);
+  border: 1px solid var(--tonedef-neon);
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  color: var(--tonedef-neon);
+  font-family: var(--tonedef-body-font);
+  font-size: 1.4rem;
+  font-weight: 500;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.success-check {
+  width: 24px;
+  height: 24px;
+  background: var(--tonedef-neon);
+  color: var(--tonedef-dark);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  animation: checkPulse 0.6s ease;
+}
+
+@keyframes checkPulse {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Animated Background Elements */
+.contact-bg-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0.1;
+  z-index: 1;
+}
+
+.wave-line {
+  width: 3px;
+  height: 40px;
+  background: var(--tonedef-neon);
+  border-radius: 2px;
+  animation: wave 2s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(102, 255, 204, 0.3);
+}
+
+.wave-line:nth-child(1) { animation-delay: 0s; }
+.wave-line:nth-child(2) { animation-delay: 0.2s; }
+.wave-line:nth-child(3) { animation-delay: 0.4s; }
+.wave-line:nth-child(4) { animation-delay: 0.6s; }
+.wave-line:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes wave {
+  0%, 100% { 
+    transform: scaleY(0.3);
+    opacity: 0.5;
+  }
+  50% { 
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .footer-contact-section {
+    padding: 3rem 0;
+  }
+  
+  .footer-contact-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .contact-text {
+    max-width: 100%;
+  }
+  
+  .contact-headline {
+    font-size: 2rem;
+  }
+  
+  .contact-subtext {
+    font-size: 1.4rem;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .email-input,
+  .message-input {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .send-btn {
+    width: 100%;
+    min-width: auto;
+  }
+  
+  .contact-bg-elements {
+    gap: 1rem;
+  }
+  
+  .wave-line {
+    width: 2px;
+    height: 30px;
+  }
+}

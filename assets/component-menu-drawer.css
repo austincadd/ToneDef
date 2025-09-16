@@ -12,7 +12,7 @@
   height: calc(var(--viewport-height, 100vh) - (var(--header-bottom-position, 100%)));
   top: 100%;
   left: 0;
-  background: rgba(var(--color-foreground), 0.5);
+  background: rgba(var(--color-foreground), 0.2);
   opacity: 0;
   visibility: hidden;
   z-index: 2;

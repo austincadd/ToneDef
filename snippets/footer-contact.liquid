@@ -1,0 +1,86 @@
+{% comment %}
+  Footer Contact Snippet - Mini contact form above footer
+{% endcomment %}
+
+<div id="contact-section" class="footer-contact-section">
+  <div class="page-width">
+    <div class="footer-contact-content">
+      <div class="contact-text">
+        <h3 class="contact-headline">Let's build something together.</h3>
+        <p class="contact-subtext">Questions about our packs or plugins?</p>
+      </div>
+      
+      <div class="contact-form-container">
+        <form id="footer-contact-form" class="footer-contact-form" onsubmit="submitFooterContact(event)">
+          <div class="form-row">
+            <textarea 
+              id="footer-message" 
+              name="message" 
+              placeholder="Your message" 
+              rows="1" 
+              required
+              class="message-input"
+            ></textarea>
+            <button type="submit" class="send-btn">
+              <span class="btn-text">Send</span>
+              <div class="btn-ripple"></div>
+            </button>
+          </div>
+        </form>
+        
+        <!-- Success Message -->
+        <div id="footer-success" class="footer-success" style="display: none;">
+          <div class="success-check">✓</div>
+          <span>Message sent!</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Animated Background Elements -->
+    <div class="contact-bg-elements">
+      <div class="wave-line"></div>
+      <div class="wave-line"></div>
+      <div class="wave-line"></div>
+      <div class="wave-line"></div>
+      <div class="wave-line"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function submitFooterContact(event) {
+  event.preventDefault();
+  
+  const form = document.getElementById('footer-contact-form');
+  const successMessage = document.getElementById('footer-success');
+  const sendBtn = form.querySelector('.send-btn');
+  
+  // Add loading state
+  sendBtn.classList.add('loading');
+  
+  // Simulate form submission (replace with actual form handling)
+  setTimeout(() => {
+    form.style.display = 'none';
+    successMessage.style.display = 'flex';
+    
+    // Reset form after 3 seconds
+    setTimeout(() => {
+      form.style.display = 'flex';
+      successMessage.style.display = 'none';
+      form.reset();
+      sendBtn.classList.remove('loading');
+    }, 3000);
+  }, 1500);
+}
+
+// Auto-resize textarea
+document.addEventListener('DOMContentLoaded', function() {
+  const textarea = document.getElementById('footer-message');
+  if (textarea) {
+    textarea.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = Math.min(this.scrollHeight, 80) + 'px';
+    });
+  }
+});
+</script>

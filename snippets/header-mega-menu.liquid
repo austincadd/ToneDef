@@ -8,6 +8,7 @@
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
     {%- for link in section.settings.menu.links -%}
+      {%- unless link.title == 'Home' -%}
       <li>
         {%- if link.links != blank -%}
           <header-menu>
@@ -21,7 +22,11 @@
                     class="header__active-menu-item"
                   {% endif %}
                 >
-                  {{- link.title | escape -}}
+                  {%- if link.title == 'Catalog' -%}
+                    Sample Packs
+                  {%- else -%}
+                    {{- link.title | escape -}}
+                  {%- endif -%}
                 </span>
                 {{- 'icon-caret.svg' | inline_asset_content -}}
               </summary>
@@ -84,11 +89,16 @@
                 class="header__active-menu-item"
               {% endif %}
             >
-              {{- link.title | escape -}}
+              {%- if link.title == 'Catalog' -%}
+                Sample Packs
+              {%- else -%}
+                {{- link.title | escape -}}
+              {%- endif -%}
             </span>
           </a>
         {%- endif -%}
       </li>
+      {%- endunless -%}
     {%- endfor -%}
   </ul>
 </nav>

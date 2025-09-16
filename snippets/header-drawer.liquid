@@ -22,6 +22,7 @@
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
               {%- for link in section.settings.menu.links -%}
+                {%- unless link.title == 'Home' -%}
                 <li>
                   {%- if link.links != blank -%}
                     <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
@@ -29,7 +30,11 @@
                         id="HeaderDrawer-{{ link.handle }}"
                         class="menu-drawer__menu-item list-menu__item link link--text focus-inset{% if link.child_active %} menu-drawer__menu-item--active{% endif %}"
                       >
-                        {{ link.title | escape }}
+                        {%- if link.title == 'Catalog' -%}
+                          Sample Packs
+                        {%- else -%}
+                          {{ link.title | escape }}
+                        {%- endif -%}
                         <span class="svg-wrapper">
                           {{- 'icon-arrow.svg' | inline_asset_content -}}
                         </span>
@@ -47,7 +52,11 @@
                             <span class="svg-wrapper">
                               {{- 'icon-arrow.svg' | inline_asset_content -}}
                             </span>
-                            {{ link.title | escape }}
+                            {%- if link.title == 'Catalog' -%}
+                              Sample Packs
+                            {%- else -%}
+                              {{ link.title | escape }}
+                            {%- endif -%}
                           </button>
                           <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
                             {%- for childlink in link.links -%}
@@ -128,10 +137,15 @@
                         aria-current="page"
                       {% endif %}
                     >
-                      {{ link.title | escape }}
+                      {%- if link.title == 'Catalog' -%}
+                        Sample Packs
+                      {%- else -%}
+                        {{ link.title | escape }}
+                      {%- endif -%}
                     </a>
                   {%- endif -%}
                 </li>
+                {%- endunless -%}
               {%- endfor -%}
             </ul>
           </nav>

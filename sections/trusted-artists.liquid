@@ -1,0 +1,260 @@
+{% comment %}
+  Trusted Artists Section - Artist images with rotating testimonials
+{% endcomment %}
+
+{{ 'section-trusted-artists.css' | asset_url | stylesheet_tag }}
+
+<div class="trusted-artists-section">
+  <div class="page-width">
+    <div class="trusted-artists-heading">
+      <h2>{{ section.settings.heading | default: "Trusted by Top Artists" }}</h2>
+      <p>{{ section.settings.subheading | default: "See what professional music producers are saying about our sample packs & plugins." }}</p>
+    </div>
+
+    <div class="artists-gallery">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'artist' %}
+            <div class="artist-card" data-artist-index="{{ forloop.index0 }}">
+              <div class="artist-image-container">
+                {% if block.settings.artist_image %}
+                  {{ block.settings.artist_image | image_url: width: 300 | image_tag: 
+                    alt: block.settings.artist_name,
+                    class: "artist-image"
+                  }}
+                {% else %}
+                  {% comment %} Placeholder when no image is selected {% endcomment %}
+                  <div class="artist-image-placeholder">
+                    <div class="placeholder-icon">👤</div>
+                    <div class="placeholder-text">{{ block.settings.artist_name }}</div>
+                  </div>
+                {% endif %}
+                <div class="artist-overlay">
+                  <div class="artist-name">{{ block.settings.artist_name }}</div>
+                  {% if block.settings.artist_title %}
+                    <div class="artist-title">{{ block.settings.artist_title }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+        {% endcase %}
+      {% endfor %}
+    </div>
+
+    <div class="testimonial-display">
+      <div class="testimonial-container">
+        <div class="testimonial-quote">
+          <span class="quote-mark">"</span>
+          <p class="testimonial-text" id="current-testimonial">
+            {% if section.blocks.size > 0 %}
+              {{ section.blocks.first.settings.testimonial | default: "These presets completely transformed my tracks!" }}
+            {% endif %}
+          </p>
+          <span class="quote-mark">"</span>
+        </div>
+        <div class="testimonial-author" id="current-author">
+          {% if section.blocks.size > 0 %}
+            – {{ section.blocks.first.settings.artist_name | default: "Artist" }}
+          {% endif %}
+        </div>
+      </div>
+      
+      <div class="testimonial-controls">
+        <button class="testimonial-btn prev-btn" onclick="previousTestimonial()">‹</button>
+        <div class="testimonial-dots">
+          {% for block in section.blocks %}
+            <span class="dot {% if forloop.first %}active{% endif %}" onclick="goToTestimonial({{ forloop.index0 }})"></span>
+          {% endfor %}
+        </div>
+        <button class="testimonial-btn next-btn" onclick="nextTestimonial()">›</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let currentTestimonialIndex = 0;
+const testimonials = [
+  {% for block in section.blocks %}
+    {% if block.type == 'artist' %}
+      {
+        text: {{ block.settings.testimonial | json }},
+        author: {{ block.settings.artist_name | json }},
+        title: {{ block.settings.artist_title | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {% endif %}
+  {% endfor %}
+];
+
+function updateTestimonial(index) {
+  if (testimonials.length === 0) return;
+  
+  const testimonial = testimonials[index];
+  const textElement = document.getElementById('current-testimonial');
+  const authorElement = document.getElementById('current-author');
+  const dots = document.querySelectorAll('.dot');
+  
+  // Update testimonial text with fade effect
+  if (textElement && authorElement) {
+    textElement.style.opacity = '0';
+    authorElement.style.opacity = '0';
+    
+    setTimeout(() => {
+      textElement.textContent = testimonial.text || "Amazing sounds!";
+      authorElement.textContent = `– ${testimonial.author || "Artist"}`;
+      textElement.style.opacity = '1';
+      authorElement.style.opacity = '1';
+    }, 300);
+  }
+  
+  // Update dots
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === index);
+  });
+  
+  // Update artist cards
+  const artistCards = document.querySelectorAll('.artist-card');
+  artistCards.forEach((card, i) => {
+    card.classList.toggle('active', i === index);
+  });
+}
+
+function nextTestimonial() {
+  currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+  updateTestimonial(currentTestimonialIndex);
+}
+
+function previousTestimonial() {
+  currentTestimonialIndex = currentTestimonialIndex === 0 ? testimonials.length - 1 : currentTestimonialIndex - 1;
+  updateTestimonial(currentTestimonialIndex);
+}
+
+function goToTestimonial(index) {
+  currentTestimonialIndex = index;
+  updateTestimonial(currentTestimonialIndex);
+}
+
+// Auto-rotate testimonials
+let testimonialInterval;
+
+function startAutoRotation() {
+  testimonialInterval = setInterval(nextTestimonial, 5000);
+}
+
+function stopAutoRotation() {
+  clearInterval(testimonialInterval);
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  if (testimonials.length > 0) {
+    updateTestimonial(0);
+    startAutoRotation();
+    
+    // Pause auto-rotation on hover
+    const testimonialDisplay = document.querySelector('.testimonial-display');
+    if (testimonialDisplay) {
+      testimonialDisplay.addEventListener('mouseenter', stopAutoRotation);
+      testimonialDisplay.addEventListener('mouseleave', startAutoRotation);
+    }
+  }
+});
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', function() {
+  stopAutoRotation();
+});
+</script>
+
+{% schema %}
+{
+  "name": "Trusted Artists",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trusted by Top Artists"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See what professional music producers are saying about our sample packs & plugins."
+    }
+  ],
+  "blocks": [
+        {
+          "type": "artist",
+          "name": "Artist",
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "artist_image",
+              "label": "Artist Image",
+              "info": "Upload the artist's photo here"
+            },
+            {
+              "type": "text",
+              "id": "artist_name",
+              "label": "Artist Name",
+              "default": "Artist Name"
+            },
+            {
+              "type": "text",
+              "id": "artist_title",
+              "label": "Artist Title/Description",
+              "default": "Music Producer"
+            },
+            {
+              "type": "textarea",
+              "id": "testimonial",
+              "label": "Testimonial",
+              "default": "These presets completely transformed my tracks!"
+            }
+          ]
+        }
+  ],
+  "presets": [
+    {
+      "name": "Trusted Artists",
+      "blocks": [
+        {
+          "type": "artist",
+          "settings": {
+            "artist_name": "Cloonee",
+            "artist_title": "House Music Producer",
+            "testimonial": "These presets completely transformed my tracks! The quality is unmatched and the workflow is incredible."
+          }
+        },
+        {
+          "type": "artist",
+          "settings": {
+            "artist_name": "Dom Dolla",
+            "artist_title": "Electronic Music Producer",
+            "testimonial": "The VST plugins are next-level! Incredible sounds, super professional. These tools are game-changers."
+          }
+        },
+        {
+          "type": "artist",
+          "settings": {
+            "artist_name": "Maup",
+            "artist_title": "Beatmaker & Producer",
+            "testimonial": "My productions have never sounded this good! These samples and presets are absolutely incredible."
+          }
+        },
+        {
+          "type": "artist",
+          "settings": {
+            "artist_name": "Max",
+            "artist_title": "Music Producer",
+            "testimonial": "Finally, samples that actually inspire creativity. The quality and variety are unmatched in the industry."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

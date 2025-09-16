@@ -593,3 +593,276 @@
     clip-path: polygon(var(--shape--blob-5));
   }
 }
+
+/* ===== TONEDEF PRODUCT CARD ENHANCEMENTS ===== */
+
+/* Def Audio Dark Theme Cards */
+.product-card-wrapper .card,
+.product-card-wrapper .card__inner {
+  background: rgba(var(--color-background), 0.9);
+  border: 1px solid rgba(var(--color-accent-primary), 0.3);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card-wrapper .card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--color-accent-secondary), 0.01) 0%,
+    rgba(var(--color-accent-primary), 0.03) 50%,
+    rgba(var(--color-background), 0.1) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity var(--transition-base);
+}
+
+/* Enhanced Hover Effects */
+.product-card-wrapper:hover .card,
+.product-card-wrapper:hover .card__inner {
+  border-color: rgba(var(--color-accent-secondary), 0.6);
+  box-shadow: 
+    var(--neon-glow-primary),
+    0 10px 30px rgba(0, 0, 0, 0.3);
+  transform: translateY(-8px);
+}
+
+.product-card-wrapper:hover .card::before {
+  opacity: 0.3;
+}
+
+/* Product Card Typography */
+.product-card-wrapper .card__heading {
+  font-family: var(--font-heading);
+  color: rgb(var(--color-foreground));
+  font-weight: 600;
+  transition: color var(--transition-base);
+  position: relative;
+  z-index: 2;
+}
+
+.product-card-wrapper:hover .card__heading {
+  color: rgb(var(--color-accent-secondary));
+  text-shadow: 0 0 8px rgba(102, 255, 204, 0.3);
+}
+
+/* Price Styling */
+.product-card-wrapper .price {
+  color: rgb(var(--color-accent-secondary)) !important;
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+  position: relative;
+  z-index: 2;
+}
+
+.product-card-wrapper .price__sale {
+  color: rgb(var(--color-accent-secondary)) !important;
+}
+
+.product-card-wrapper .price__regular {
+  color: rgba(var(--color-foreground), 0.7) !important;
+}
+
+/* Image Effects */
+.product-card-wrapper .card__media {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+.product-card-wrapper .card__media::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    rgba(var(--color-accent-secondary), 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.product-card-wrapper:hover .card__media::after {
+  opacity: 1;
+}
+
+.product-card-wrapper:hover .card__media img {
+  transform: scale(1.05);
+  filter: brightness(1.1) saturate(1.2);
+}
+
+/* Badge Styling */
+.product-card-wrapper .badge {
+  background: rgba(var(--color-accent-secondary), 0.9);
+  color: rgb(var(--color-background));
+  font-weight: 600;
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 0 10px rgba(102, 255, 204, 0.4);
+}
+
+/* Quick Add Button */
+.product-card-wrapper .quick-add__submit,
+.product-card-wrapper .button {
+  background: rgba(var(--color-accent-primary), 0.8);
+  border: 1px solid rgb(var(--color-accent-secondary));
+  color: rgb(var(--color-accent-secondary));
+  font-family: var(--font-heading);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-base);
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.product-card-wrapper .quick-add__submit::before,
+.product-card-wrapper .button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--color-accent-secondary), 0.2),
+    transparent
+  );
+  transition: left var(--transition-slow);
+}
+
+.product-card-wrapper .quick-add__submit:hover,
+.product-card-wrapper .button:hover {
+  background: rgba(var(--color-accent-secondary), 0.15);
+  box-shadow: var(--neon-glow-primary);
+  transform: translateY(-2px);
+}
+
+.product-card-wrapper .quick-add__submit:hover::before,
+.product-card-wrapper .button:hover::before {
+  left: 100%;
+}
+
+/* Card Information Enhancements */
+.product-card-wrapper .card-information {
+  position: relative;
+  z-index: 2;
+}
+
+.product-card-wrapper .card-information > * {
+  color: rgba(var(--color-foreground), 0.9);
+}
+
+/* Audio Demo Button for Music Products */
+.product-card-wrapper .audio-demo-btn {
+  background: transparent;
+  border: 1px solid rgba(var(--color-accent-secondary), 0.5);
+  color: rgb(var(--color-accent-secondary));
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-family: var(--font-body);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  margin-top: var(--space-sm);
+  position: relative;
+  z-index: 2;
+}
+
+.product-card-wrapper .audio-demo-btn:hover {
+  background: rgba(var(--color-accent-secondary), 0.1);
+  box-shadow: 0 0 10px rgba(102, 255, 204, 0.3);
+}
+
+/* Microinteraction: Pulse effect for featured products */
+.product-card-wrapper.featured-product::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    rgba(var(--color-accent-secondary), 0.5),
+    transparent,
+    rgba(var(--color-accent-secondary), 0.5)
+  );
+  border-radius: var(--radius-md);
+  animation: pulse-border 3s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes pulse-border {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.02);
+  }
+}
+
+/* Mobile Optimizations */
+@media screen and (max-width: 749px) {
+  .product-card-wrapper:hover .card,
+  .product-card-wrapper:hover .card__inner {
+    transform: translateY(-4px);
+  }
+  
+  .product-card-wrapper .card__heading {
+    font-size: var(--font-size-base);
+  }
+  
+  .product-card-wrapper .price {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Loading State */
+.product-card-wrapper.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.product-card-wrapper.loading .card::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--color-accent-secondary), 0.1),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ===== END TONEDEF PRODUCT CARD ENHANCEMENTS =====*/

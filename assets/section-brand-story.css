@@ -1,0 +1,150 @@
+/* Def Audio Brand Story Section */
+.brand-story-section {
+  padding: 8rem 0;
+  background: linear-gradient(to top, var(--tonedef-dark) 0%, rgba(26, 61, 47, 0.1) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-story-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.brand-story-text {
+  z-index: 2;
+}
+
+.brand-story-heading {
+  font-family: var(--tonedef-heading-font);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--tonedef-neon);
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  text-shadow: 0 0 20px rgba(102, 255, 204, 0.3);
+}
+
+.brand-story-description {
+  font-family: var(--tonedef-body-font);
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 3rem;
+}
+
+.brand-story-stats {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-family: var(--tonedef-heading-font);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--tonedef-neon);
+  text-shadow: 0 0 15px rgba(102, 255, 204, 0.4);
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-family: var(--tonedef-body-font);
+  font-size: 1.4rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.brand-story-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.daw-visual {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background: rgba(26, 61, 47, 0.2);
+  border: 2px solid rgba(102, 255, 204, 0.3);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.waveform-animation {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.wave-bar {
+  width: 4px;
+  background: var(--tonedef-neon);
+  border-radius: 2px;
+  animation: wave 1.5s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(102, 255, 204, 0.5);
+}
+
+.wave-bar:nth-child(1) { height: 20px; animation-delay: 0s; }
+.wave-bar:nth-child(2) { height: 35px; animation-delay: 0.1s; }
+.wave-bar:nth-child(3) { height: 50px; animation-delay: 0.2s; }
+.wave-bar:nth-child(4) { height: 30px; animation-delay: 0.3s; }
+.wave-bar:nth-child(5) { height: 45px; animation-delay: 0.4s; }
+.wave-bar:nth-child(6) { height: 25px; animation-delay: 0.5s; }
+.wave-bar:nth-child(7) { height: 40px; animation-delay: 0.6s; }
+.wave-bar:nth-child(8) { height: 15px; animation-delay: 0.7s; }
+
+@keyframes wave {
+  0%, 100% { transform: scaleY(0.5); }
+  50% { transform: scaleY(1); }
+}
+
+.producer-icon {
+  font-size: 3rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .brand-story-content {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    text-align: center;
+  }
+  
+  .brand-story-heading {
+    font-size: 2.8rem;
+  }
+  
+  .brand-story-description {
+    font-size: 1.6rem;
+  }
+  
+  .brand-story-stats {
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .daw-visual {
+    width: 250px;
+    height: 150px;
+  }
+}

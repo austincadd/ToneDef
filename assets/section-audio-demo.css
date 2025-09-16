@@ -1,7 +1,11 @@
-/* ToneDef Audio Demo Section */
+/* Def Audio Audio Demo Section */
 .audio-demo-section {
-  padding: 6rem 0;
-  background: linear-gradient(135deg, var(--tonedef-dark) 0%, rgba(26, 61, 47, 0.1) 100%);
+  padding: var(--space-4xl) 0;
+  background: linear-gradient(
+    135deg, 
+    rgb(var(--color-background)) 0%, 
+    rgba(var(--color-accent-primary), 0.1) 100%
+  );
 }
 
 .audio-demo-container {
@@ -10,46 +14,50 @@
 }
 
 .audio-demo-heading {
+  font-family: var(--font-heading);
   text-align: center;
-  margin-bottom: 4rem;
-  color: var(--tonedef-neon);
-  font-size: 3rem;
+  margin-bottom: var(--space-3xl);
+  color: rgb(var(--color-accent-secondary));
+  font-size: var(--font-size-4xl);
   font-weight: 700;
+  text-shadow: var(--neon-text-shadow);
 }
 
 .audio-tracks {
   display: grid;
-  gap: 2rem;
+  gap: var(--space-xl);
 }
 
 .audio-track {
-  background: rgba(26, 61, 47, 0.2);
-  border: 1px solid rgba(102, 255, 204, 0.3);
-  border-radius: 1rem;
-  padding: 2rem;
-  transition: all 0.3s ease;
+  background: rgba(var(--color-accent-primary), 0.2);
+  border: 1px solid rgba(var(--color-accent-secondary), 0.3);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  transition: all var(--transition-base);
 }
 
 .audio-track:hover {
-  border-color: var(--tonedef-neon);
-  box-shadow: 0 0 20px rgba(102, 255, 204, 0.2);
+  border-color: rgb(var(--color-accent-secondary));
+  box-shadow: var(--neon-glow-secondary);
   transform: translateY(-2px);
 }
 
 .track-info {
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--space-lg);
 }
 
 .track-title {
-  font-size: 1.8rem;
+  font-family: var(--font-heading);
+  font-size: var(--font-size-xl);
   font-weight: 600;
-  color: var(--tonedef-neon);
-  margin-bottom: 0.5rem;
+  color: rgb(var(--color-accent-secondary));
+  margin-bottom: var(--space-sm);
 }
 
 .track-description {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.4rem;
+  font-family: var(--font-body);
+  color: rgba(var(--color-foreground), 0.8);
+  font-size: var(--font-size-base);
   line-height: 1.5;
 }
 
@@ -60,28 +68,28 @@
 .player-controls {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: var(--space-lg);
 }
 
 .audio-play-button {
   width: 5rem;
   height: 5rem;
-  border-radius: 50%;
-  background: var(--tonedef-forest);
-  border: 2px solid var(--tonedef-neon);
-  color: var(--tonedef-neon);
+  border-radius: var(--radius-full);
+  background: rgba(var(--color-accent-primary), 0.8);
+  border: 2px solid rgb(var(--color-accent-secondary));
+  color: rgb(var(--color-accent-secondary));
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
   flex-shrink: 0;
 }
 
 .audio-play-button:hover {
-  background: var(--tonedef-neon);
-  color: var(--tonedef-dark);
-  box-shadow: 0 0 20px rgba(102, 255, 204, 0.4);
+  background: rgb(var(--color-accent-secondary));
+  color: rgb(var(--color-background));
+  box-shadow: var(--neon-glow-primary);
   transform: scale(1.05);
 }
 
@@ -112,26 +120,27 @@
 .progress-bar {
   width: 100%;
   height: 0.4rem;
-  background: rgba(102, 255, 204, 0.2);
-  border-radius: 0.2rem;
+  background: rgba(var(--color-accent-secondary), 0.2);
+  border-radius: var(--radius-sm);
   overflow: hidden;
   cursor: pointer;
 }
 
 .progress-fill {
   height: 100%;
-  background: var(--tonedef-neon);
+  background: rgb(var(--color-accent-secondary));
   width: 0%;
   transition: width 0.1s ease;
-  border-radius: 0.2rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 0 4px rgba(var(--color-accent-secondary), 0.6);
 }
 
 .time-display {
   display: flex;
   justify-content: space-between;
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.7);
-  font-family: 'Space Grotesk', monospace;
+  font-size: var(--font-size-sm);
+  color: rgba(var(--color-foreground), 0.7);
+  font-family: var(--font-heading);
 }
 
 /* Responsive Design */

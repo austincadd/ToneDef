@@ -1,6 +1,6 @@
-/* ToneDef Instant Download Banner */
+/* Def Audio Instant Download Banner */
 .instant-download-banner {
-  background: linear-gradient(135deg, var(--tonedef-forest) 0%, rgba(26, 61, 47, 0.8) 100%);
+  background: linear-gradient(to top, var(--tonedef-forest) 0%, rgba(26, 61, 47, 0.8) 100%);
   border: 2px solid var(--tonedef-neon);
   border-radius: 1rem;
   padding: 2rem;
