@@ -4,15 +4,19 @@
 
 <div id="contact" class="footer-contact-section section">
   <div class="page-width">
-    <div class="footer-contact-content">
-      <div class="contact-text">
-        <h3 class="contact-headline">{{ section.settings.headline | default: "Let's build something together." }}</h3>
-        <p class="contact-subtext">{{ section.settings.subtext | default: "Questions about our packs or plugins?" }}</p>
+    <div class="footer-contact-content tech-panel" style="padding: 1rem 3rem; border-radius: 12px; text-align: center; position: relative; overflow: hidden;">
+      <div class="contact-text" style="margin-bottom: 0;">
+        <h3 class="contact-headline" style="color: var(--text-primary); font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; font-family: 'Space Grotesk', sans-serif;">
+          {{ section.settings.headline | default: "Let's build something together." }}
+        </h3>
+        <p class="contact-subtext" style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+          {{ section.settings.subtext | default: "Questions about our packs or plugins?" }}
+        </p>
       </div>
       
-      <div class="contact-form-container">
-        <form id="footer-contact-form" class="footer-contact-form" onsubmit="submitFooterContact(event)">
-          <div class="form-row">
+      <div class="contact-form-container" style="max-width: 600px; margin: 0 auto;">
+        <form id="footer-contact-form" class="footer-contact-form" onsubmit="submitFooterContact(event)" style="display: flex; gap: 1rem; align-items: flex-end;">
+          <div class="form-row" style="display: flex; gap: 1rem; width: 100%;">
             <input 
               type="email" 
               id="footer-email" 
@@ -20,6 +24,7 @@
               placeholder="Your email" 
               required
               class="email-input"
+              style="flex: 1; padding: 1rem; background: var(--cyber-panel); border: 1px solid var(--panel-border); border-radius: 8px; color: var(--text-primary); font-size: 1rem; font-family: 'Space Grotesk', sans-serif; outline: none; transition: all 0.3s ease;"
             >
             <textarea 
               id="footer-message" 
@@ -28,32 +33,40 @@
               rows="1" 
               required
               class="message-input"
+              style="flex: 2; padding: 1rem; background: var(--cyber-panel); border: 1px solid var(--panel-border); border-radius: 8px; color: var(--text-primary); font-size: 1rem; font-family: 'Space Grotesk', sans-serif; outline: none; transition: all 0.3s ease; resize: none; min-height: 50px;"
             ></textarea>
-            <button type="submit" class="send-btn">
+            <button type="submit" class="send-btn" style="background: var(--accent-blue); color: var(--cyber-bg); padding: 1rem 2rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: 'Space Grotesk', sans-serif; white-space: nowrap; height: fit-content;">
               <span class="btn-text">Send</span>
-              <div class="btn-ripple"></div>
             </button>
           </div>
         </form>
         
         <!-- Success Message -->
-        <div id="footer-success" class="footer-success" style="display: none;">
-          <div class="success-check">✓</div>
-          <span>Message sent!</span>
+        <div id="footer-success" class="footer-success" style="display: none; flex-direction: column; align-items: center; gap: 1rem; padding: 2rem;">
+          <div class="success-check" style="font-size: 3rem; color: var(--neon-green);">✓</div>
+          <span style="color: var(--text-primary); font-size: 1.2rem; font-weight: 600; font-family: 'Space Grotesk', sans-serif;">Message sent!</span>
         </div>
       </div>
     </div>
-    
-    <!-- Animated Background Elements -->
-    <div class="contact-bg-elements">
-      <div class="wave-line"></div>
-      <div class="wave-line"></div>
-      <div class="wave-line"></div>
-      <div class="wave-line"></div>
-      <div class="wave-line"></div>
-    </div>
   </div>
 </div>
+
+<style>
+.email-input:focus,
+.message-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+}
+
+.send-btn:hover {
+  background: var(--neon-green) !important;
+  transform: translateY(-1px);
+}
+
+.send-btn:active {
+  transform: translateY(0);
+}
+</style>
 
 <script>
 function submitFooterContact(event) {

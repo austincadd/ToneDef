@@ -4,7 +4,7 @@
   padding: 4rem 0 6rem 0 !important; /* Increased bottom padding to reach bottom */
   position: relative;
   overflow: hidden;
-  border-top: 1px solid rgba(102, 255, 204, 0.2);
+  border: none;
   margin-top: -1px !important; /* Pull up to connect with trusted artists section */
   margin-bottom: 0 !important; /* Remove bottom margin */
   min-height: 50vh !important; /* Ensure it takes up significant space */

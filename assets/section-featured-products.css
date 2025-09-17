@@ -1,8 +1,8 @@
 /* Def Audio Featured Products Section */
 .featured-products-section {
-  padding: 3rem 0;
-  background: linear-gradient(to top, var(--tonedef-dark) 0%, rgba(26, 61, 47, 0.05) 100%);
-  margin-top: -1rem;
+  padding: 0;
+  background: transparent;
+  margin-top: 0;
   position: relative;
   z-index: 2;
 }
@@ -140,17 +140,16 @@
 }
 
 .placeholder-product-card {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 8px;
   overflow: hidden;
-  border: 1px solid rgba(102, 255, 204, 0.1);
-  transition: all 0.3s ease;
+  border: none;
+  transition: all 0.2s ease;
 }
 
 .placeholder-product-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--tonedef-neon);
-  box-shadow: 0 10px 30px rgba(102, 255, 204, 0.15);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .placeholder-image {

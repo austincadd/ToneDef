@@ -4,40 +4,52 @@
 
 <div class="brand-story-section section" id="about">
   <div class="page-width">
-    <div class="brand-story-content">
+    <div class="brand-story-content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding: 0;">
       <div class="brand-story-text">
-        <h2 class="brand-story-heading">{{ section.settings.heading | default: "Built by Producers, for Producers" }}</h2>
-        <p class="brand-story-description">{{ section.settings.description | default: "Every sound in our collection is crafted by industry veterans who understand what producers need to create their next hit. We're not just selling samples and plugins – we're sharing the tools that helped us build our own careers in music." }}</p>
-        <div class="brand-story-stats">
+        <h2 class="brand-story-heading" style="color: var(--text-primary); font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.2; font-family: 'Space Grotesk', sans-serif;">
+          {{ section.settings.heading | default: "Built by Producers, for Producers" }}
+        </h2>
+        <p class="brand-story-description" style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6; margin-bottom: 2rem;">
+          {{ section.settings.description | default: "Every sound in our collection is crafted by industry veterans who understand what producers need to create their next hit. We're not just selling samples and plugins – we're sharing the tools that helped us build our own careers in music." }}
+        </p>
+        <div class="brand-story-stats" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
           {% for block in section.blocks %}
             {% case block.type %}
               {% when 'stat' %}
-                <div class="stat-item">
-                  <div class="stat-number">{{ block.settings.number }}</div>
-                  <div class="stat-label">{{ block.settings.label }}</div>
+                <div class="stat-item tech-panel" style="padding: 1.5rem; text-align: center; border-radius: 12px;">
+                  <div class="stat-number" style="color: var(--neon-green); font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; font-family: 'Space Grotesk', sans-serif;">{{ block.settings.number }}</div>
+                  <div class="stat-label" style="color: var(--text-secondary); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; font-family: 'Space Grotesk', sans-serif;">{{ block.settings.label }}</div>
                 </div>
             {% endcase %}
           {% endfor %}
         </div>
       </div>
       <div class="brand-story-visual">
-        <div class="daw-visual">
-          <div class="waveform-animation">
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
-            <div class="wave-bar"></div>
+        <div class="daw-visual tech-panel" style="padding: 3rem; text-align: center; border-radius: 12px; position: relative; overflow: hidden;">
+          <div class="waveform-animation" style="display: flex; justify-content: center; align-items: end; gap: 0.5rem; margin-bottom: 2rem; height: 100px;">
+            <div class="wave-bar" style="width: 8px; background: linear-gradient(to top, var(--accent-blue), var(--neon-green)); border-radius: 4px; animation: waveAnimation 1.5s ease-in-out infinite;"></div>
+            <div class="wave-bar" style="width: 8px; background: linear-gradient(to top, var(--neon-green), var(--accent-blue)); border-radius: 4px; animation: waveAnimation 1.5s ease-in-out infinite 0.2s;"></div>
+            <div class="wave-bar" style="width: 8px; background: linear-gradient(to top, var(--accent-blue), var(--neon-green)); border-radius: 4px; animation: waveAnimation 1.5s ease-in-out infinite 0.4s;"></div>
+            <div class="wave-bar" style="width: 8px; background: linear-gradient(to top, var(--neon-green), var(--accent-blue)); border-radius: 4px; animation: waveAnimation 1.5s ease-in-out infinite 0.6s;"></div>
+            <div class="wave-bar" style="width: 8px; background: linear-gradient(to top, var(--accent-blue), var(--neon-green)); border-radius: 4px; animation: waveAnimation 1.5s ease-in-out infinite 0.8s;"></div>
+            <div class="wave-bar" style="width: 8px; background: linear-gradient(to top, var(--neon-green), var(--accent-blue)); border-radius: 4px; animation: waveAnimation 1.5s ease-in-out infinite 1s;"></div>
+            <div class="wave-bar" style="width: 8px; background: linear-gradient(to top, var(--accent-blue), var(--neon-green)); border-radius: 4px; animation: waveAnimation 1.5s ease-in-out infinite 1.2s;"></div>
+            <div class="wave-bar" style="width: 8px; background: linear-gradient(to top, var(--neon-green), var(--accent-blue)); border-radius: 4px; animation: waveAnimation 1.5s ease-in-out infinite 1.4s;"></div>
           </div>
-          <div class="producer-icon">🎧</div>
+          <div class="producer-icon" style="font-size: 3rem; color: var(--accent-blue); margin-bottom: 1rem;">🎧</div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; font-family: 'Space Grotesk', sans-serif;">Professional Audio Tools</p>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+@keyframes waveAnimation {
+  0%, 100% { height: 20px; }
+  50% { height: 60px; }
+}
+</style>
 
 {% schema %}
 {

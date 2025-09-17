@@ -1,10 +1,10 @@
 /* Def Audio Stay in the Lab Section - Compact */
 .stay-in-lab-section {
-  padding: 4rem 0;
-  background: linear-gradient(135deg, var(--tonedef-dark) 0%, var(--tonedef-forest) 100%);
+  padding: 0;
+  background: transparent;
   position: relative;
   overflow: hidden;
-  border-top: 1px solid rgba(102, 255, 204, 0.2);
+  border-top: none;
 }
 
 .lab-content {

@@ -6,33 +6,37 @@
 
 <div class="trusted-artists-section section" id="testimonials">
   <div class="page-width">
-    <div class="trusted-artists-heading">
-      <h2>{{ section.settings.heading | default: "Trusted by Top Artists" }}</h2>
-      <p>{{ section.settings.subheading | default: "See what professional music producers are saying about our sample packs & plugins." }}</p>
+    <div class="trusted-artists-heading" style="text-align: center; margin-bottom: 0;">
+      <h2 style="color: var(--text-primary); font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; font-family: 'Space Grotesk', sans-serif;">
+        {{ section.settings.heading | default: "Trusted by Top Artists" }}
+      </h2>
+      <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+        {{ section.settings.subheading | default: "See what professional music producers are saying about our sample packs & plugins." }}
+      </p>
     </div>
 
-    <div class="artists-gallery">
+    <div class="artists-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 0;">
       {% for block in section.blocks %}
         {% case block.type %}
           {% when 'artist' %}
-            <div class="artist-card" data-artist-index="{{ forloop.index0 }}">
-              <div class="artist-image-container">
+            <div class="artist-card tech-panel" data-artist-index="{{ forloop.index0 }}" style="padding: 1.5rem; text-align: center; border-radius: 12px; cursor: pointer; transition: all 0.3s ease;">
+              <div class="artist-image-container" style="position: relative; margin-bottom: 1rem;">
                 {% if block.settings.artist_image %}
                   {{ block.settings.artist_image | image_url: width: 300 | image_tag: 
                     alt: block.settings.artist_name,
-                    class: "artist-image"
+                    class: "artist-image",
+                    style: "width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--panel-border);"
                   }}
                 {% else %}
-                  {% comment %} Placeholder when no image is selected {% endcomment %}
-                  <div class="artist-image-placeholder">
-                    <div class="placeholder-icon">👤</div>
-                    <div class="placeholder-text">{{ block.settings.artist_name }}</div>
+                  <div class="artist-image-placeholder" style="width: 80px; height: 80px; border-radius: 50%; background: var(--cyber-panel); border: 2px solid var(--panel-border); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto;">
+                    <div class="placeholder-icon" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 0.5rem;">👤</div>
+                    <div class="placeholder-text" style="font-size: 0.7rem; color: var(--text-secondary); font-family: 'Space Grotesk', sans-serif;">{{ block.settings.artist_name }}</div>
                   </div>
                 {% endif %}
-                <div class="artist-overlay">
-                  <div class="artist-name">{{ block.settings.artist_name }}</div>
+                <div class="artist-overlay" style="margin-top: 1rem;">
+                  <div class="artist-name" style="color: var(--text-primary); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; font-family: 'Space Grotesk', sans-serif;">{{ block.settings.artist_name }}</div>
                   {% if block.settings.artist_title %}
-                    <div class="artist-title">{{ block.settings.artist_title }}</div>
+                    <div class="artist-title" style="color: var(--text-secondary); font-size: 0.8rem; font-family: 'Space Grotesk', sans-serif;">{{ block.settings.artist_title }}</div>
                   {% endif %}
                 </div>
               </div>
@@ -41,32 +45,32 @@
       {% endfor %}
     </div>
 
-    <div class="testimonial-display">
+    <div class="testimonial-display tech-panel" style="padding: 3rem; border-radius: 12px; text-align: center; position: relative; overflow: hidden;">
       <div class="testimonial-container">
-        <div class="testimonial-quote">
-          <span class="quote-mark">"</span>
-          <p class="testimonial-text" id="current-testimonial">
+        <div class="testimonial-quote" style="margin-bottom: 2rem;">
+          <span class="quote-mark" style="color: var(--accent-blue); font-size: 4rem; font-weight: bold; font-family: 'Space Grotesk', sans-serif;">"</span>
+          <p class="testimonial-text" id="current-testimonial" style="color: var(--text-primary); font-size: 1.3rem; line-height: 1.6; margin: 1rem 0; font-family: 'Space Grotesk', sans-serif; font-style: italic; transition: opacity 0.3s ease;">
             {% if section.blocks.size > 0 %}
               {{ section.blocks.first.settings.testimonial | default: "These presets completely transformed my tracks!" }}
             {% endif %}
           </p>
-          <span class="quote-mark">"</span>
+          <span class="quote-mark" style="color: var(--accent-blue); font-size: 4rem; font-weight: bold; font-family: 'Space Grotesk', sans-serif;">"</span>
         </div>
-        <div class="testimonial-author" id="current-author">
+        <div class="testimonial-author" id="current-author" style="color: var(--text-secondary); font-size: 1rem; font-weight: 600; font-family: 'Space Grotesk', sans-serif; transition: opacity 0.3s ease;">
           {% if section.blocks.size > 0 %}
             – {{ section.blocks.first.settings.artist_name | default: "Artist" }}
           {% endif %}
         </div>
       </div>
       
-      <div class="testimonial-controls">
-        <button class="testimonial-btn prev-btn" onclick="previousTestimonial()">‹</button>
-        <div class="testimonial-dots">
+      <div class="testimonial-controls" style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin-top: 2rem;">
+        <button class="testimonial-btn prev-btn" onclick="previousTestimonial()" style="background: var(--cyber-panel); color: var(--accent-blue); border: 1px solid var(--panel-border); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease; font-size: 1.2rem; font-weight: bold;">‹</button>
+        <div class="testimonial-dots" style="display: flex; gap: 0.5rem;">
           {% for block in section.blocks %}
-            <span class="dot {% if forloop.first %}active{% endif %}" onclick="goToTestimonial({{ forloop.index0 }})"></span>
+            <span class="dot {% if forloop.first %}active{% endif %}" onclick="goToTestimonial({{ forloop.index0 }})" style="width: 12px; height: 12px; border-radius: 50%; background: var(--panel-border); cursor: pointer; transition: all 0.3s ease;"></span>
           {% endfor %}
         </div>
-        <button class="testimonial-btn next-btn" onclick="nextTestimonial()">›</button>
+        <button class="testimonial-btn next-btn" onclick="nextTestimonial()" style="background: var(--cyber-panel); color: var(--accent-blue); border: 1px solid var(--panel-border); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease; font-size: 1.2rem; font-weight: bold;">›</button>
       </div>
     </div>
   </div>
@@ -165,6 +169,28 @@ window.addEventListener('beforeunload', function() {
   stopAutoRotation();
 });
 </script>
+
+<style>
+.artist-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-blue);
+}
+
+.testimonial-btn:hover {
+  background: var(--accent-blue) !important;
+  color: var(--cyber-bg) !important;
+  border-color: var(--accent-blue) !important;
+}
+
+.dot.active {
+  background: var(--accent-blue) !important;
+}
+
+.dot:hover {
+  background: var(--accent-blue) !important;
+  opacity: 0.7;
+}
+</style>
 
 {% schema %}
 {

@@ -2,57 +2,71 @@
   Stay in the Lab Section - Exclusive Content & Early Access
 {% endcomment %}
 
-<div class="stay-in-lab-section">
+<div class="stay-in-lab-section section" id="newsletter">
   <div class="page-width">
-    <div class="lab-content">
-      <div class="lab-header">
-        <div class="lab-icon">⚡</div>
-        <h2 class="lab-heading">{{ section.settings.heading | default: "Stay in the Lab" }}</h2>
-        <p class="lab-subtext">{{ section.settings.subtext | default: "Exclusive sounds, presets, and early access to plugins — free for our members." }}</p>
+    <div class="lab-content tech-panel" style="padding: 1rem 3rem; border-radius: 12px; text-align: center; position: relative; overflow: hidden;">
+      <div class="lab-header" style="margin-bottom: 2rem;">
+        <div class="lab-icon" style="font-size: 3rem; color: var(--accent-blue); margin-bottom: 1rem;">⚡</div>
+        <h2 class="lab-heading" style="color: var(--text-primary); font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; font-family: 'Space Grotesk', sans-serif;">
+          {{ section.settings.heading | default: "Stay in the Lab" }}
+        </h2>
+        <p class="lab-subtext" style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6; max-width: 600px; margin: 0 auto 2rem;">
+          {{ section.settings.subtext | default: "Exclusive sounds, presets, and early access to plugins — free for our members." }}
+        </p>
       </div>
       
-      <div class="lab-benefits">
-        <span class="benefit-text">🎁 Free sounds • ⚡ Early access • 🔥 Beta plugins</span>
+      <div class="lab-benefits" style="margin-bottom: 2rem;">
+        <span class="benefit-text" style="color: var(--text-secondary); font-size: 1rem; font-family: 'Space Grotesk', sans-serif;">🎁 Free sounds • ⚡ Early access • 🔥 Beta plugins</span>
       </div>
       
       <div class="lab-form-container">
-        <form class="lab-form" action="#" method="post" id="lab-form" onsubmit="submitLabForm(event)">
-          <div class="form-group">
+        <form class="lab-form" action="#" method="post" id="lab-form" onsubmit="submitLabForm(event)" style="max-width: 500px; margin: 0 auto;">
+          <div class="form-group" style="display: flex; gap: 1rem; margin-bottom: 1rem;">
             <input 
               type="email" 
               name="email" 
               placeholder="Enter your email address" 
               class="lab-email-input"
               required
+              style="flex: 1; padding: 1rem; background: var(--cyber-panel); border: 1px solid var(--panel-border); border-radius: 8px; color: var(--text-primary); font-size: 1rem; font-family: 'Space Grotesk', sans-serif; outline: none; transition: all 0.3s ease;"
             >
-            <button type="submit" class="lab-join-btn">
+            <button type="submit" class="lab-join-btn" style="background: var(--accent-blue); color: var(--cyber-bg); padding: 1rem 2rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: 'Space Grotesk', sans-serif; white-space: nowrap;">
               <span class="btn-text">{{ section.settings.button_text | default: "Unlock Free Sounds" }}</span>
-              <div class="btn-pulse"></div>
             </button>
           </div>
-          <p class="lab-disclaimer">{{ section.settings.disclaimer | default: "Instant access to free sounds. No spam, unsubscribe anytime." }}</p>
+          <p class="lab-disclaimer" style="color: var(--text-secondary); font-size: 0.9rem; font-family: 'Space Grotesk', sans-serif;">
+            {{ section.settings.disclaimer | default: "Instant access to free sounds. No spam, unsubscribe anytime." }}
+          </p>
         </form>
         
         <!-- Success Message -->
-        <div id="lab-success" class="lab-success" style="display: none;">
-          <div class="success-icon">✓</div>
-          <div class="success-text">
-            <h3>Welcome to the Lab!</h3>
-            <p>Check your email for instant access to your free sounds.</p>
+        <div id="lab-success" class="lab-success" style="display: none; flex-direction: column; align-items: center; gap: 1rem;">
+          <div class="success-icon" style="font-size: 3rem; color: var(--neon-green);">✓</div>
+          <div class="success-text" style="text-align: center;">
+            <h3 style="color: var(--text-primary); font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem; font-family: 'Space Grotesk', sans-serif;">Welcome to the Lab!</h3>
+            <p style="color: var(--text-secondary); font-size: 1rem; font-family: 'Space Grotesk', sans-serif;">Check your email for instant access to your free sounds.</p>
           </div>
         </div>
       </div>
     </div>
-    
-    <!-- Animated Background Elements -->
-    <div class="lab-bg-elements">
-      <div class="sound-wave"></div>
-      <div class="sound-wave"></div>
-      <div class="sound-wave"></div>
-      <div class="sound-wave"></div>
-    </div>
   </div>
 </div>
+
+<style>
+.lab-email-input:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+}
+
+.lab-join-btn:hover {
+  background: var(--neon-green) !important;
+  transform: translateY(-1px);
+}
+
+.lab-join-btn:active {
+  transform: translateY(0);
+}
+</style>
 
 <script>
 function submitLabForm(event) {

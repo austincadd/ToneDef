@@ -54,6 +54,30 @@
     {%- endif -%}
 
     {{ content_for_header }}
+  
+  <!-- Cyberpunk Particle System -->
+  <div class="cyber-particles" id="cyber-particles"></div>
+  
+  <script>
+        // Create professional floating particles
+        function createParticles() {
+          const particlesContainer = document.getElementById('cyber-particles');
+          const particleCount = 15; // Reduced for more professional look
+          
+          for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 30 + 's';
+            particle.style.animationDuration = (25 + Math.random() * 15) + 's';
+            particle.style.opacity = (0.2 + Math.random() * 0.3).toString();
+            particlesContainer.appendChild(particle);
+          }
+        }
+    
+    // Initialize particles when page loads
+    document.addEventListener('DOMContentLoaded', createParticles);
+  </script>
 
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'

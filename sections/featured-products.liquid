@@ -2,7 +2,7 @@
 
 <div class="featured-products-section section" id="shop">
   <div class="page-width">
-    <div class="section-header" style="text-align: center; margin-bottom: 3rem;">
+    <div class="section-header" style="text-align: center; margin-bottom: 1rem; margin-top: 0;">
       {% if section.settings.heading != blank %}
         <h2 class="featured-products-heading reveal" style="color: #ffffff; font-size: 2.5rem; font-weight: 600; margin-bottom: 1rem; font-family: 'Space Grotesk', sans-serif;">{{ section.settings.heading }}</h2>
       {% endif %}
@@ -13,22 +13,22 @@
     </div>
     
     <!-- Sample Pack Product Grid -->
-    <div class="sample-packs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 3rem;">
+    <div class="sample-packs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 1rem;">
       {% assign products = collections[section.settings.collection].products %}
       {% assign products_to_show = section.settings.products_to_show | default: 2 %}
       
       {% for product in products limit: products_to_show %}
-        <div class="sample-pack-card" style="background: rgba(255, 255, 255, 0.03); border-radius: 8px; padding: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.1); transition: all 0.2s ease; position: relative;">
+        <div class="sample-pack-card tech-panel" style="padding: 1.5rem; transition: all 0.3s ease; position: relative; cursor: pointer;">
           <!-- Sale Badge -->
           {% if product.compare_at_price > product.price %}
-            <div class="sale-badge" style="position: absolute; top: 1rem; right: 1rem; background: #ff4444; color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600;">
+            <div class="sale-badge" style="position: absolute; top: 1rem; right: 1rem; background: var(--neon-magenta); color: var(--cyber-bg); padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; font-family: 'Space Grotesk', sans-serif;">
               {% assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price %}
               -{{ discount }}%
             </div>
           {% endif %}
           
           <!-- Product Image -->
-          <div class="product-image-container" style="margin-bottom: 1rem; border-radius: 6px; overflow: hidden; background: #1a1a1a; height: 180px; display: flex; align-items: center; justify-content: center;">
+          <div class="product-image-container" style="margin-bottom: 1rem; border-radius: 6px; overflow: hidden; background: var(--cyber-bg); height: 180px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--panel-border);">
             {% if product.featured_media %}
               <img src="{{ product.featured_media | image_url: width: 300 }}" 
                    alt="{{ product.featured_media.alt | escape }}"
@@ -36,30 +36,30 @@
                    style="width: 100%; height: 100%; object-fit: cover;">
             {% else %}
               <div class="product-placeholder" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-                <div class="placeholder-icon" style="font-size: 2rem; color: #66ffcc;">🎵</div>
+                <div class="placeholder-icon" style="font-size: 2rem; color: var(--accent-blue);">🎵</div>
               </div>
             {% endif %}
           </div>
           
           <!-- Product Info -->
           <div class="product-info">
-            <h3 class="product-title" style="color: #ffffff; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.3; font-family: 'Space Grotesk', sans-serif;">{{ product.title | default: 'Sample Pack' }}</h3>
-            <p class="product-description" style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.4;">{{ product.description | strip_html | truncate: 60 | default: 'Premium sounds for your next hit' }}</p>
+            <h3 class="product-title" style="color: var(--text-primary); font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.3; font-family: 'Space Grotesk', sans-serif;">{{ product.title | default: 'Sample Pack' }}</h3>
+            <p class="product-description" style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; line-height: 1.4;">{{ product.description | strip_html | truncate: 60 | default: 'Premium sounds for your next hit' }}</p>
             
             <!-- Price Section -->
             <div class="product-price" style="margin-bottom: 1rem;">
               <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span class="current-price" style="color: #66ffcc; font-size: 1.2rem; font-weight: 700;">
+                <span class="current-price" style="color: var(--neon-green); font-size: 1.2rem; font-weight: 700; font-family: 'Space Grotesk', sans-serif;">
                   {% if product.price %}{{ product.price | money }}{% else %}$29.99{% endif %}
                 </span>
                 {% if product.compare_at_price > product.price %}
-                  <span class="original-price" style="color: rgba(255, 255, 255, 0.4); font-size: 0.9rem; text-decoration: line-through;">{{ product.compare_at_price | money }}</span>
+                  <span class="original-price" style="color: var(--text-secondary); opacity: 0.6; font-size: 0.9rem; text-decoration: line-through;">{{ product.compare_at_price | money }}</span>
                 {% endif %}
               </div>
             </div>
             
             <!-- Action Button -->
-            <a href="{{ product.url | default: '#' }}" class="add-to-cart-btn" style="width: 100%; background: #66ffcc; color: #1a1a1a; padding: 0.8rem; border: none; border-radius: 6px; font-weight: 600; cursor: pointer; transition: all 0.2s ease; text-decoration: none; text-align: center; display: block;">
+            <a href="{{ product.url | default: '#' }}" class="add-to-cart-btn" style="width: 100%; background: var(--accent-blue); color: var(--cyber-bg); padding: 0.8rem; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; text-align: center; display: block; font-family: 'Space Grotesk', sans-serif;">
               {% if product.available %}Add to Cart{% else %}Coming Soon{% endif %}
             </a>
           </div>

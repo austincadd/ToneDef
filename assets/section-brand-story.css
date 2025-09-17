@@ -1,7 +1,7 @@
 /* Def Audio Brand Story Section */
 .brand-story-section {
-  padding: 8rem 0;
-  background: linear-gradient(to top, var(--tonedef-dark) 0%, rgba(26, 61, 47, 0.1) 100%);
+  padding: 0;
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
