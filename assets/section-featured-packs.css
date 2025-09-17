@@ -1,0 +1,327 @@
+/* Featured Sample Packs Section */
+.featured-packs-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated Background Elements */
+.featured-packs-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(102, 255, 204, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 45, 149, 0.1) 0%, transparent 50%);
+  animation: backgroundPulse 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes backgroundPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* Section Header */
+.packs-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.packs-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(102, 255, 204, 0.3);
+  background: linear-gradient(135deg, #ffffff, #66ffcc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.packs-subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Packs Grid */
+.packs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Pack Card */
+.pack-card {
+  background: rgba(13, 15, 13, 0.8);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(102, 255, 204, 0.2);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pack-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(102, 255, 204, 0.4);
+  box-shadow: 0 20px 40px rgba(102, 255, 204, 0.2), 0 0 20px rgba(255, 45, 149, 0.1);
+}
+
+/* Pack Image */
+.pack-image-container {
+  position: relative;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pack-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.pack-card:hover .pack-image {
+  transform: scale(1.05);
+}
+
+/* Pack Badge */
+.pack-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(135deg, #ff2d95, #00d4ff);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(255, 45, 149, 0.3);
+}
+
+/* Pack Info */
+.pack-info {
+  margin-bottom: 1.5rem;
+}
+
+.pack-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.pack-genre {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Audio Controls */
+.audio-controls {
+  margin-bottom: 1rem;
+}
+
+audio {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  filter: invert(1) hue-rotate(180deg);
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: rgba(102, 255, 204, 0.1);
+}
+
+/* Play Demo Button */
+.play-demo-btn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #ff2d95, #00d4ff);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(255, 45, 149, 0.3);
+}
+
+.play-demo-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 45, 149, 0.4);
+}
+
+.play-demo-btn:active {
+  transform: translateY(0);
+}
+
+/* Button Shine Effect */
+.btn-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.play-demo-btn:hover .btn-shine {
+  left: 100%;
+}
+
+/* Playing State */
+.play-demo-btn.playing {
+  background: linear-gradient(135deg, #66ffcc, #4a9eff);
+  box-shadow: 0 4px 15px rgba(102, 255, 204, 0.4);
+}
+
+/* Loading State */
+.pack-card.loading .play-demo-btn {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.pack-card.loading .btn-text::after {
+  content: '...';
+  animation: loadingDots 1s infinite;
+}
+
+@keyframes loadingDots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .featured-packs-section {
+    padding: 2rem 0;
+  }
+  
+  .packs-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .packs-title {
+    font-size: 2rem;
+  }
+  
+  .pack-card {
+    padding: 1rem;
+  }
+  
+  .pack-image {
+    height: 150px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .packs-title {
+    font-size: 1.75rem;
+  }
+  
+  .packs-subtitle {
+    font-size: 1rem;
+  }
+  
+  .pack-name {
+    font-size: 1.25rem;
+  }
+  
+  .play-demo-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Performance Optimizations */
+.pack-card {
+  will-change: transform;
+}
+
+.pack-image {
+  will-change: transform;
+}
+
+.play-demo-btn {
+  will-change: transform, box-shadow;
+}
+
+/* Accessibility */
+.play-demo-btn:focus {
+  outline: 2px solid rgba(102, 255, 204, 0.5);
+  outline-offset: 2px;
+}
+
+audio:focus {
+  outline: 2px solid rgba(102, 255, 204, 0.5);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .pack-card {
+    border: 2px solid var(--text-primary);
+  }
+  
+  .play-demo-btn {
+    border: 2px solid var(--text-primary);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .pack-card,
+  .pack-image,
+  .play-demo-btn,
+  .btn-shine {
+    transition: none;
+  }
+  
+  .pack-card:hover {
+    transform: none;
+  }
+  
+  .pack-card:hover .pack-image {
+    transform: none;
+  }
+  
+  .play-demo-btn:hover {
+    transform: none;
+  }
+  
+  .featured-packs-section::before {
+    animation: none;
+  }
+}

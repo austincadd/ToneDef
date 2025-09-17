@@ -11,184 +11,121 @@
         {{ section.settings.heading | default: "Trusted by Top Artists" }}
       </h2>
       <p style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6; max-width: 600px; margin: 0 auto;">
-        {{ section.settings.subheading | default: "See what professional music producers are saying about our sample packs & plugins." }}
+        {{ section.settings.subheading | default: "Fueling the tracks of world-class producers." }}
       </p>
     </div>
 
-    <div class="artists-gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 0;">
-      {% for block in section.blocks %}
-        {% case block.type %}
-          {% when 'artist' %}
-            <div class="artist-card tech-panel" data-artist-index="{{ forloop.index0 }}" style="padding: 1.5rem; text-align: center; border-radius: 12px; cursor: pointer; transition: all 0.3s ease;">
-              <div class="artist-image-container" style="position: relative; margin-bottom: 1rem;">
-                {% if block.settings.artist_image %}
-                  {{ block.settings.artist_image | image_url: width: 300 | image_tag: 
-                    alt: block.settings.artist_name,
-                    class: "artist-image",
-                    style: "width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid var(--panel-border);"
-                  }}
-                {% else %}
-                  <div class="artist-image-placeholder" style="width: 80px; height: 80px; border-radius: 50%; background: var(--cyber-panel); border: 2px solid var(--panel-border); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto;">
-                    <div class="placeholder-icon" style="font-size: 1.5rem; color: var(--accent-blue); margin-bottom: 0.5rem;">👤</div>
-                    <div class="placeholder-text" style="font-size: 0.7rem; color: var(--text-secondary); font-family: 'Space Grotesk', sans-serif;">{{ block.settings.artist_name }}</div>
-                  </div>
-                {% endif %}
-                <div class="artist-overlay" style="margin-top: 1rem;">
-                  <div class="artist-name" style="color: var(--text-primary); font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; font-family: 'Space Grotesk', sans-serif;">{{ block.settings.artist_name }}</div>
-                  {% if block.settings.artist_title %}
-                    <div class="artist-title" style="color: var(--text-secondary); font-size: 0.8rem; font-family: 'Space Grotesk', sans-serif;">{{ block.settings.artist_title }}</div>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-        {% endcase %}
-      {% endfor %}
-    </div>
-
-    <div class="testimonial-display tech-panel" style="padding: 3rem; border-radius: 12px; text-align: center; position: relative; overflow: hidden;">
-      <div class="testimonial-container">
-        <div class="testimonial-quote" style="margin-bottom: 2rem;">
-          <span class="quote-mark" style="color: var(--accent-blue); font-size: 4rem; font-weight: bold; font-family: 'Space Grotesk', sans-serif;">"</span>
-          <p class="testimonial-text" id="current-testimonial" style="color: var(--text-primary); font-size: 1.3rem; line-height: 1.6; margin: 1rem 0; font-family: 'Space Grotesk', sans-serif; font-style: italic; transition: opacity 0.3s ease;">
-            {% if section.blocks.size > 0 %}
-              {{ section.blocks.first.settings.testimonial | default: "These presets completely transformed my tracks!" }}
-            {% endif %}
-          </p>
-          <span class="quote-mark" style="color: var(--accent-blue); font-size: 4rem; font-weight: bold; font-family: 'Space Grotesk', sans-serif;">"</span>
-        </div>
-        <div class="testimonial-author" id="current-author" style="color: var(--text-secondary); font-size: 1rem; font-weight: 600; font-family: 'Space Grotesk', sans-serif; transition: opacity 0.3s ease;">
-          {% if section.blocks.size > 0 %}
-            – {{ section.blocks.first.settings.artist_name | default: "Artist" }}
-          {% endif %}
-        </div>
+    <div class="artists-showcase">
+      <div class="artist-card">
+        <img src="https://cdn.shopify.com/s/files/1/0938/0285/6811/files/cloonee.jpg?v=1757992680" alt="Cloonee" class="artist-image">
+        <div class="artist-name">Cloonee</div>
+        <div class="artist-title">House Music Producer</div>
       </div>
       
-      <div class="testimonial-controls" style="display: flex; justify-content: center; align-items: center; gap: 2rem; margin-top: 2rem;">
-        <button class="testimonial-btn prev-btn" onclick="previousTestimonial()" style="background: var(--cyber-panel); color: var(--accent-blue); border: 1px solid var(--panel-border); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease; font-size: 1.2rem; font-weight: bold;">‹</button>
-        <div class="testimonial-dots" style="display: flex; gap: 0.5rem;">
-          {% for block in section.blocks %}
-            <span class="dot {% if forloop.first %}active{% endif %}" onclick="goToTestimonial({{ forloop.index0 }})" style="width: 12px; height: 12px; border-radius: 50%; background: var(--panel-border); cursor: pointer; transition: all 0.3s ease;"></span>
-          {% endfor %}
-        </div>
-        <button class="testimonial-btn next-btn" onclick="nextTestimonial()" style="background: var(--cyber-panel); color: var(--accent-blue); border: 1px solid var(--panel-border); width: 40px; height: 40px; border-radius: 50%; cursor: pointer; transition: all 0.3s ease; font-size: 1.2rem; font-weight: bold;">›</button>
+      <div class="artist-card">
+        <img src="https://cdn.shopify.com/s/files/1/0938/0285/6811/files/dom.jpg?v=1757992681" alt="Dom Dolla" class="artist-image">
+        <div class="artist-name">Dom Dolla</div>
+        <div class="artist-title">Electronic Music Producer</div>
+      </div>
+      
+      <div class="artist-card">
+        <img src="https://cdn.shopify.com/s/files/1/0938/0285/6811/files/maup.jpg?v=1757992680" alt="Maup" class="artist-image">
+        <div class="artist-name">Maup</div>
+        <div class="artist-title">Beatmaker & Producer</div>
+      </div>
+      
+      <div class="artist-card">
+        <img src="https://cdn.shopify.com/s/files/1/0938/0285/6811/files/max.jpg?v=1757992680" alt="Max Styler" class="artist-image">
+        <div class="artist-name">Max Styler</div>
+        <div class="artist-title">Music Producer</div>
       </div>
     </div>
   </div>
 </div>
 
-<script>
-let currentTestimonialIndex = 0;
-const testimonials = [
-  {% for block in section.blocks %}
-    {% if block.type == 'artist' %}
-      {
-        text: {{ block.settings.testimonial | json }},
-        author: {{ block.settings.artist_name | json }},
-        title: {{ block.settings.artist_title | json }}
-      }{% unless forloop.last %},{% endunless %}
-    {% endif %}
-  {% endfor %}
-];
-
-function updateTestimonial(index) {
-  if (testimonials.length === 0) return;
-  
-  const testimonial = testimonials[index];
-  const textElement = document.getElementById('current-testimonial');
-  const authorElement = document.getElementById('current-author');
-  const dots = document.querySelectorAll('.dot');
-  
-  // Update testimonial text with fade effect
-  if (textElement && authorElement) {
-    textElement.style.opacity = '0';
-    authorElement.style.opacity = '0';
-    
-    setTimeout(() => {
-      textElement.textContent = testimonial.text || "Amazing sounds!";
-      authorElement.textContent = `– ${testimonial.author || "Artist"}`;
-      textElement.style.opacity = '1';
-      authorElement.style.opacity = '1';
-    }, 300);
-  }
-  
-  // Update dots
-  dots.forEach((dot, i) => {
-    dot.classList.toggle('active', i === index);
-  });
-  
-  // Update artist cards
-  const artistCards = document.querySelectorAll('.artist-card');
-  artistCards.forEach((card, i) => {
-    card.classList.toggle('active', i === index);
-  });
-}
-
-function nextTestimonial() {
-  currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
-  updateTestimonial(currentTestimonialIndex);
-}
-
-function previousTestimonial() {
-  currentTestimonialIndex = currentTestimonialIndex === 0 ? testimonials.length - 1 : currentTestimonialIndex - 1;
-  updateTestimonial(currentTestimonialIndex);
-}
-
-function goToTestimonial(index) {
-  currentTestimonialIndex = index;
-  updateTestimonial(currentTestimonialIndex);
-}
-
-// Auto-rotate testimonials
-let testimonialInterval;
-
-function startAutoRotation() {
-  testimonialInterval = setInterval(nextTestimonial, 5000);
-}
-
-function stopAutoRotation() {
-  clearInterval(testimonialInterval);
-}
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-  if (testimonials.length > 0) {
-    updateTestimonial(0);
-    startAutoRotation();
-    
-    // Pause auto-rotation on hover
-    const testimonialDisplay = document.querySelector('.testimonial-display');
-    if (testimonialDisplay) {
-      testimonialDisplay.addEventListener('mouseenter', stopAutoRotation);
-      testimonialDisplay.addEventListener('mouseleave', startAutoRotation);
-    }
-  }
-});
-
-// Cleanup on page unload
-window.addEventListener('beforeunload', function() {
-  stopAutoRotation();
-});
-</script>
 
 <style>
+.artists-showcase {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.artist-card {
+  text-align: center;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  width: 120px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .artist-card:hover {
   transform: translateY(-2px);
-  border-color: var(--accent-blue);
+  border-color: rgba(74, 158, 255, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.testimonial-btn:hover {
-  background: var(--accent-blue) !important;
-  color: var(--cyber-bg) !important;
-  border-color: var(--accent-blue) !important;
+.artist-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
 }
 
-.dot.active {
-  background: var(--accent-blue) !important;
+.artist-name {
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  text-align: center;
+  line-height: 1.2;
 }
 
-.dot:hover {
-  background: var(--accent-blue) !important;
-  opacity: 0.7;
+.artist-title {
+  color: var(--text-secondary);
+  font-size: 0.65rem;
+  opacity: 0.8;
+  text-align: center;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .artists-showcase {
+    gap: 0.75rem;
+    margin: 0.75rem 0;
+  }
+  
+  .artist-card {
+    width: 100px;
+    height: 140px;
+    padding: 0.5rem;
+  }
+  
+  .artist-image {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .artist-name {
+    font-size: 0.7rem;
+  }
+  
+  .artist-title {
+    font-size: 0.6rem;
+  }
 }
 </style>
 
@@ -208,7 +145,7 @@ window.addEventListener('beforeunload', function() {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "See what professional music producers are saying about our sample packs & plugins."
+      "default": "Fueling the tracks of world-class producers."
     }
   ],
   "blocks": [

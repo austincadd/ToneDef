@@ -1,14 +1,14 @@
-/* Apple-Inspired Minimal Hero Section */
+/* Optimized Hero Section - Performance Focused */
+/* GPU-accelerated animations and reduced CPU load */
 
 .hero-section {
   position: relative;
-  min-height: 50vh;
+  min-height: 70vh;
   display: flex;
   align-items: center;
   background: #000000;
   overflow: hidden;
-  padding: 0.5rem 0;
-  margin: 0;
+  padding: 4rem 0;
 }
 
 .hero-background {
@@ -34,11 +34,11 @@
   z-index: 2;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 1.5rem;
+  gap: 3rem;
   align-items: center;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 0 0.5rem;
+  padding: 0 2rem;
 }
 
 .hero-text {
@@ -47,12 +47,12 @@
 
 .product-badge {
   display: inline-block;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 500;
   color: #666666;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
@@ -61,7 +61,7 @@
   font-weight: 700;
   color: #ffffff;
   line-height: 1.1;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1.25rem 0;
   letter-spacing: -0.02em;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   position: relative;
@@ -77,9 +77,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-shadow: 
-    0 0 30px rgba(255, 255, 255, 0.3),
-    0 0 60px rgba(255, 255, 255, 0.1);
+  will-change: transform, opacity, filter;
   animation: titleGlow 3s ease-in-out infinite alternate;
   white-space: nowrap;
   display: block;
@@ -89,48 +87,26 @@
   animation-delay: 0.2s;
 }
 
-.title-line-1::before,
-.title-line-2::before {
-  content: '';
-  position: absolute;
-  top: -4px;
-  left: -6px;
-  right: -6px;
-  bottom: -4px;
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.05) 0%, 
-    rgba(255, 255, 255, 0.02) 100%);
-  border-radius: 6px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  filter: blur(4px);
-}
-
-.hero-title:hover .title-line-1::before,
-.hero-title:hover .title-line-2::before {
-  opacity: 1;
-}
-
+/* GPU-optimized glow animation */
 @keyframes titleGlow {
   0% {
-    text-shadow: 
-      0 0 15px rgba(255, 255, 255, 0.2),
-      0 0 30px rgba(255, 255, 255, 0.1);
+    transform: scale(1);
+    opacity: 0.8;
+    filter: brightness(1) saturate(1);
   }
   50% {
-    text-shadow: 
-      0 0 20px rgba(255, 255, 255, 0.3),
-      0 0 40px rgba(255, 255, 255, 0.15);
+    transform: scale(1.02);
+    opacity: 1;
+    filter: brightness(1.1) saturate(1.2);
   }
   100% {
-    text-shadow: 
-      0 0 15px rgba(255, 255, 255, 0.2),
-      0 0 30px rgba(255, 255, 255, 0.1);
+    transform: scale(1);
+    opacity: 0.9;
+    filter: brightness(1.05) saturate(1.1);
   }
 }
 
-/* Minimal liquid shimmer effect */
+/* Optimized scanning line effect */
 .title-line-1::after,
 .title-line-2::after {
   content: '';
@@ -139,65 +115,68 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    linear-gradient(90deg, 
-      transparent 0%, 
-      rgba(255, 255, 255, 0.03) 50%, 
-      transparent 100%);
-  animation: liquidShimmer 8s ease-in-out infinite;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 191, 255, 0.3) 20%,
+    rgba(255, 255, 255, 0.4) 50%, 
+    rgba(138, 43, 226, 0.3) 80%,
+    transparent 100%);
+  animation: scanLine 4s ease-in-out infinite;
   z-index: 1;
   pointer-events: none;
-  border-radius: 4px;
+  border-radius: 2px;
+  will-change: transform, opacity;
 }
 
 .title-line-2::after {
-  animation-delay: 2s;
+  animation-delay: 0.8s;
 }
 
-@keyframes liquidShimmer {
+/* GPU-accelerated scan line animation */
+@keyframes scanLine {
   0% {
+    transform: translateX(-100%) scaleY(0.8);
     opacity: 0;
-    transform: translateX(-100%) scaleX(0.5);
   }
-  20% {
-    opacity: 0.3;
-    transform: translateX(-50%) scaleX(1);
+  15% {
+    transform: translateX(-100%) scaleY(1);
+    opacity: 1;
   }
-  80% {
-    opacity: 0.3;
-    transform: translateX(50%) scaleX(1);
+  85% {
+    transform: translateX(100%) scaleY(1);
+    opacity: 1;
   }
   100% {
+    transform: translateX(100%) scaleY(0.8);
     opacity: 0;
-    transform: translateX(100%) scaleX(0.5);
   }
 }
 
 .hero-description {
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: #a1a1a6;
-  line-height: 1.5;
-  margin: 0 0 1.5rem 0;
-  max-width: 400px;
+  line-height: 1.6;
+  margin: 0 0 1.75rem 0;
+  max-width: 450px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .price-section {
   display: flex;
   align-items: baseline;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
 }
 
 .current-price {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 600;
   color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .original-price {
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: #666666;
   text-decoration: line-through;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -205,7 +184,7 @@
 
 .cta-section {
   display: flex;
-  gap: 0.75rem;
+  gap: 1rem;
   align-items: center;
 }
 
@@ -213,32 +192,38 @@
   background: #0071e3;
   color: #ffffff;
   border: none;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-  font-size: 0.9rem;
+  border-radius: 12px;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
+  transition: all 0.2s ease;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  will-change: transform;
 }
 
 .primary-cta:hover {
   background: #0077ed;
+  transform: translateY(-1px);
 }
 
 .secondary-cta {
   background: transparent;
   color: #0071e3;
   border: 1px solid #0071e3;
-  border-radius: 8px;
-  padding: 0.75rem 1.5rem;
-  font-size: 0.9rem;
+  border-radius: 12px;
+  padding: 0.875rem 2rem;
+  font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
+  transition: all 0.2s ease;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  will-change: transform;
 }
 
 .secondary-cta:hover {
   background: rgba(0, 113, 227, 0.1);
+  transform: translateY(-1px);
 }
 
 .product-preview {
@@ -249,16 +234,17 @@
 
 .preview-container {
   position: relative;
-  width: 200px;
-  height: 200px;
-  border-radius: 12px;
+  width: 240px;
+  height: 240px;
+  border-radius: 16px;
   overflow: hidden;
   background: #1c1c1e;
   box-shadow: 
-    0 12px 24px rgba(0, 0, 0, 0.2),
-    0 0 0 1px rgba(255, 255, 255, 0.03);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+    0 16px 32px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  will-change: transform, opacity;
 }
 
 .preview-container::before {
@@ -283,12 +269,10 @@
 }
 
 .preview-container:hover {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: 
-    0 16px 32px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    0 0 12px rgba(0, 191, 255, 0.06);
-  border-color: rgba(0, 191, 255, 0.15);
+  transform: translateY(-4px) scale(1.02);
+  opacity: 0.95;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+  border-color: rgba(0, 191, 255, 0.2);
 }
 
 .preview-image {
@@ -296,25 +280,46 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease;
-  border-radius: 12px;
+  border-radius: 16px;
+  will-change: transform;
 }
 
 .preview-container:hover .preview-image {
   transform: scale(1.02);
 }
 
+/* Accessibility: Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .title-line-1,
+  .title-line-2 {
+    animation: none;
+  }
+  
+  .title-line-1::after,
+  .title-line-2::after {
+    animation: none;
+  }
+  
+  .preview-container:hover {
+    transform: none;
+  }
+  
+  .preview-container:hover .preview-image {
+    transform: none;
+  }
+}
+
 /* Mobile Responsive */
 @media (max-width: 768px) {
   .hero-section {
-    min-height: 45vh;
-    padding: 0.25rem 0;
+    min-height: 60vh;
+    padding: 2rem 0;
   }
   
   .hero-content {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 2rem;
     text-align: center;
-    padding: 0 0.5rem;
   }
   
   .hero-text {
@@ -341,8 +346,19 @@
   }
   
   .preview-container {
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
+  }
+  
+  /* Disable heavy animations on mobile for better performance */
+  .title-line-1,
+  .title-line-2 {
+    animation: none;
+  }
+  
+  .title-line-1::after,
+  .title-line-2::after {
+    animation: none;
   }
 }
 

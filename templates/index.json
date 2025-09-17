@@ -38,20 +38,24 @@
         "description": "Every sound in our collection is crafted by industry veterans who understand what producers need to create their next hit. We're not just selling samples and plugins – we're sharing the tools that helped us build our own careers in music."
       }
     },
-    "plugin_spotlight": {
-      "type": "plugin-spotlight",
+    "featured_packs": {
+      "type": "featured-packs",
       "settings": {
-        "heading": "Meet Our Flagship Plugin",
-        "tagline": "The ultimate tool for professional music production",
-        "plugin_name": "Def Audio Pro",
-        "try_url": "#plugins"
+        "title": "Featured Sample Packs",
+        "subtitle": "Experience our premium sound collections with interactive demos",
+        "pack1_name": "Euphoria",
+        "pack1_genre": "Progressive House",
+        "pack2_name": "Paradox",
+        "pack2_genre": "Tech House",
+        "pack3_name": "One",
+        "pack3_genre": "Deep House"
       }
     },
     "trusted_artists": {
       "type": "trusted-artists",
       "settings": {
         "heading": "Trusted by Top Artists",
-        "subheading": "See what professional music producers are saying about our sample packs & plugins."
+        "subheading": "Fueling the tracks of world-class producers."
       }
     },
     "email_capture": {
@@ -75,7 +79,7 @@
     "hero",
     "featured_products",
     "brand_story",
-    "plugin_spotlight",
+    "featured_packs",
     "trusted_artists",
     "email_capture",
     "footer_contact"

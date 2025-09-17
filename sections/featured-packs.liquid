@@ -1,0 +1,365 @@
+{% comment %}
+  Featured Sample Packs Section - Interactive demo audio clips
+{% endcomment %}
+
+<div class="featured-packs-section section" id="featured-packs">
+  <div class="page-width">
+    <div class="packs-header" style="text-align: center; margin-bottom: 3rem;">
+      <h2 class="packs-title" style="font-family: 'Space Grotesk', sans-serif; font-size: 2.5rem; font-weight: 700; color: var(--text-primary); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(102, 255, 204, 0.3);">
+        {{ section.settings.title | default: "Featured Sample Packs" }}
+      </h2>
+      <p class="packs-subtitle" style="font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+        {{ section.settings.subtitle | default: "Experience our premium sound collections with interactive demos" }}
+      </p>
+    </div>
+
+    <div class="packs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+      
+      <!-- Pack 1: Euphoria -->
+      <div class="pack-card" data-pack="euphoria" style="background: rgba(13, 15, 13, 0.8); border-radius: 16px; padding: 1.5rem; border: 1px solid rgba(102, 255, 204, 0.2); backdrop-filter: blur(20px); transition: all 0.3s ease; position: relative; overflow: hidden;">
+        <div class="pack-image-container" style="position: relative; margin-bottom: 1.5rem;">
+          <img src="{{ section.settings.pack1_image | default: 'https://cdn.shopify.com/s/files/1/0938/0285/6811/files/Screenshot2025-09-15at5.59.05PM.png?v=1757973557' }}" alt="Euphoria Pack" class="pack-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;">
+          <div class="pack-badge" style="position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, #ff2d95, #00d4ff); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+            NEW
+          </div>
+        </div>
+        
+        <div class="pack-info" style="margin-bottom: 1.5rem;">
+          <h3 class="pack-name" style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin: 0 0 0.5rem 0;">
+            {{ section.settings.pack1_name | default: "Euphoria" }}
+          </h3>
+          <p class="pack-genre" style="font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: var(--text-secondary); margin: 0;">
+            {{ section.settings.pack1_genre | default: "Progressive House" }}
+          </p>
+        </div>
+
+        <div class="audio-controls" style="margin-bottom: 1rem;">
+          <audio id="audio-euphoria" preload="none" style="width: 100%; height: 40px; border-radius: 8px; background: rgba(0, 0, 0, 0.3);">
+            <source src="https://cdn.shopify.com/s/files/1/0938/0285/6811/files/demo1.wav?v=1758074420" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+
+        <button class="play-demo-btn" data-pack="euphoria" style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #ff2d95, #00d4ff); color: white; border: none; border-radius: 8px; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;">
+          <span class="btn-text">Play Demo</span>
+          <div class="btn-shine"></div>
+        </button>
+      </div>
+
+      <!-- Pack 2: Paradox -->
+      <div class="pack-card" data-pack="paradox" style="background: rgba(13, 15, 13, 0.8); border-radius: 16px; padding: 1.5rem; border: 1px solid rgba(102, 255, 204, 0.2); backdrop-filter: blur(20px); transition: all 0.3s ease; position: relative; overflow: hidden;">
+        <div class="pack-image-container" style="position: relative; margin-bottom: 1.5rem;">
+          <img src="{{ section.settings.pack2_image | default: 'https://cdn.shopify.com/s/files/1/0938/0285/6811/files/Screenshot2025-09-15at5.49.13PM.png?v=1757973190' }}" alt="Paradox Pack" class="pack-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;">
+          <div class="pack-badge" style="position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, #ff2d95, #00d4ff); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+            NEW
+          </div>
+        </div>
+        
+        <div class="pack-info" style="margin-bottom: 1.5rem;">
+          <h3 class="pack-name" style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin: 0 0 0.5rem 0;">
+            {{ section.settings.pack2_name | default: "Paradox" }}
+          </h3>
+          <p class="pack-genre" style="font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: var(--text-secondary); margin: 0;">
+            {{ section.settings.pack2_genre | default: "Tech House" }}
+          </p>
+        </div>
+
+        <div class="audio-controls" style="margin-bottom: 1rem;">
+          <audio id="audio-paradox" preload="none" style="width: 100%; height: 40px; border-radius: 8px; background: rgba(0, 0, 0, 0.3);">
+            <source src="https://cdn.shopify.com/s/files/1/0938/0285/6811/files/demo2.wav?v=1758074420" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+
+        <button class="play-demo-btn" data-pack="paradox" style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #ff2d95, #00d4ff); color: white; border: none; border-radius: 8px; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;">
+          <span class="btn-text">Play Demo</span>
+          <div class="btn-shine"></div>
+        </button>
+      </div>
+
+      <!-- Pack 3: One -->
+      <div class="pack-card" data-pack="one" style="background: rgba(13, 15, 13, 0.8); border-radius: 16px; padding: 1.5rem; border: 1px solid rgba(102, 255, 204, 0.2); backdrop-filter: blur(20px); transition: all 0.3s ease; position: relative; overflow: hidden;">
+        <div class="pack-image-container" style="position: relative; margin-bottom: 1.5rem;">
+          <img src="{{ section.settings.pack3_image | default: 'https://cdn.shopify.com/s/files/1/0938/0285/6811/files/Screenshot2025-09-15at5.45.28PM.png?v=1757973417' }}" alt="One Pack" class="pack-image" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px;">
+          <div class="pack-badge" style="position: absolute; top: 12px; right: 12px; background: linear-gradient(135deg, #ff2d95, #00d4ff); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">
+            NEW
+          </div>
+        </div>
+        
+        <div class="pack-info" style="margin-bottom: 1.5rem;">
+          <h3 class="pack-name" style="font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--text-primary); margin: 0 0 0.5rem 0;">
+            {{ section.settings.pack3_name | default: "One" }}
+          </h3>
+          <p class="pack-genre" style="font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; color: var(--text-secondary); margin: 0;">
+            {{ section.settings.pack3_genre | default: "Deep House" }}
+          </p>
+        </div>
+
+        <div class="audio-controls" style="margin-bottom: 1rem;">
+          <audio id="audio-one" preload="none" style="width: 100%; height: 40px; border-radius: 8px; background: rgba(0, 0, 0, 0.3);">
+            <source src="https://cdn.shopify.com/s/files/1/0938/0285/6811/files/demo3.wav?v=1758074420" type="audio/wav">
+            Your browser does not support the audio element.
+          </audio>
+        </div>
+
+        <button class="play-demo-btn" data-pack="one" style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #ff2d95, #00d4ff); color: white; border: none; border-radius: 8px; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden;">
+          <span class="btn-text">Play Demo</span>
+          <div class="btn-shine"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Featured Packs Section Styling */
+.featured-packs-section {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+  padding: 4rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated Background Elements */
+.featured-packs-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(102, 255, 204, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 45, 149, 0.1) 0%, transparent 50%);
+  animation: backgroundPulse 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes backgroundPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* Pack Card Hover Effects */
+.pack-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(102, 255, 204, 0.4);
+  box-shadow: 0 20px 40px rgba(102, 255, 204, 0.2), 0 0 20px rgba(255, 45, 149, 0.1);
+}
+
+.pack-card:hover .pack-image {
+  transform: scale(1.05);
+}
+
+.pack-image {
+  transition: transform 0.3s ease;
+}
+
+/* Button Shine Effect */
+.btn-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.play-demo-btn:hover .btn-shine {
+  left: 100%;
+}
+
+.play-demo-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 45, 149, 0.4);
+}
+
+.play-demo-btn:active {
+  transform: translateY(0);
+}
+
+/* Audio Controls Styling */
+audio {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: rgba(102, 255, 204, 0.1);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .packs-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .packs-title {
+    font-size: 2rem !important;
+  }
+  
+  .pack-card {
+    padding: 1rem !important;
+  }
+}
+
+/* Loading State */
+.pack-card.loading .play-demo-btn {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.pack-card.loading .btn-text::after {
+  content: '...';
+  animation: loadingDots 1s infinite;
+}
+
+@keyframes loadingDots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60%, 100% { content: '...'; }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const playButtons = document.querySelectorAll('.play-demo-btn');
+  const audioElements = document.querySelectorAll('audio');
+  
+  // Track currently playing audio
+  let currentAudio = null;
+  
+  playButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const packName = this.getAttribute('data-pack');
+      const audio = document.getElementById(`audio-${packName}`);
+      const card = this.closest('.pack-card');
+      
+      // Pause any currently playing audio
+      if (currentAudio && currentAudio !== audio) {
+        currentAudio.pause();
+        const otherButton = currentAudio.closest('.pack-card').querySelector('.play-demo-btn');
+        otherButton.querySelector('.btn-text').textContent = 'Play Demo';
+        otherButton.classList.remove('playing');
+      }
+      
+      if (audio.paused) {
+        audio.play().then(() => {
+          this.querySelector('.btn-text').textContent = 'Pause Demo';
+          this.classList.add('playing');
+          currentAudio = audio;
+        }).catch(error => {
+          console.error('Error playing audio:', error);
+        });
+      } else {
+        audio.pause();
+        this.querySelector('.btn-text').textContent = 'Play Demo';
+        this.classList.remove('playing');
+        currentAudio = null;
+      }
+    });
+  });
+  
+  // Handle audio end events
+  audioElements.forEach(audio => {
+    audio.addEventListener('ended', function() {
+      const packName = this.id.replace('audio-', '');
+      const button = document.querySelector(`[data-pack="${packName}"]`);
+      button.querySelector('.btn-text').textContent = 'Play Demo';
+      button.classList.remove('playing');
+      currentAudio = null;
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "Featured Sample Packs",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Featured Sample Packs"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Section Subtitle",
+      "default": "Experience our premium sound collections with interactive demos"
+    },
+    {
+      "type": "header",
+      "content": "Pack 1 - Euphoria"
+    },
+    {
+      "type": "text",
+      "id": "pack1_name",
+      "label": "Pack 1 Name",
+      "default": "Euphoria"
+    },
+    {
+      "type": "text",
+      "id": "pack1_genre",
+      "label": "Pack 1 Genre",
+      "default": "Progressive House"
+    },
+    {
+      "type": "image_picker",
+      "id": "pack1_image",
+      "label": "Pack 1 Image"
+    },
+    {
+      "type": "header",
+      "content": "Pack 2 - Paradox"
+    },
+    {
+      "type": "text",
+      "id": "pack2_name",
+      "label": "Pack 2 Name",
+      "default": "Paradox"
+    },
+    {
+      "type": "text",
+      "id": "pack2_genre",
+      "label": "Pack 2 Genre",
+      "default": "Tech House"
+    },
+    {
+      "type": "image_picker",
+      "id": "pack2_image",
+      "label": "Pack 2 Image"
+    },
+    {
+      "type": "header",
+      "content": "Pack 3 - One"
+    },
+    {
+      "type": "text",
+      "id": "pack3_name",
+      "label": "Pack 3 Name",
+      "default": "One"
+    },
+    {
+      "type": "text",
+      "id": "pack3_genre",
+      "label": "Pack 3 Genre",
+      "default": "Deep House"
+    },
+    {
+      "type": "image_picker",
+      "id": "pack3_image",
+      "label": "Pack 3 Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Sample Packs"
+    }
+  ]
+}
+{% endschema %}

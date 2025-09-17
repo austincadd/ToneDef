@@ -3,48 +3,59 @@
 {% endcomment %}
 
 <div id="contact" class="footer-contact-section section">
+  <!-- Animated Background Elements -->
+  <div class="contact-bg-pattern">
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
+    <div class="grid-pattern"></div>
+  </div>
+  
   <div class="page-width">
-    <div class="footer-contact-content tech-panel" style="padding: 1rem 3rem; border-radius: 12px; text-align: center; position: relative; overflow: hidden;">
-      <div class="contact-text" style="margin-bottom: 0;">
-        <h3 class="contact-headline" style="color: var(--text-primary); font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; font-family: 'Space Grotesk', sans-serif;">
-          {{ section.settings.headline | default: "Let's build something together." }}
+    <div class="footer-contact-content tech-panel" style="padding: 0.75rem 1rem; border-radius: 12px; text-align: center; position: relative; overflow: hidden; backdrop-filter: blur(20px); background: rgba(13, 15, 13, 0.8); border: 1px solid rgba(102, 255, 204, 0.3); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);">
+      <div class="contact-text" style="margin-bottom: 0.75rem;">
+        <h3 class="contact-headline" style="color: var(--text-primary); font-size: 1.6rem; font-weight: 700; margin-bottom: 0.25rem; line-height: 1.1; font-family: 'Space Grotesk', sans-serif; position: relative; display: inline-block;">
+          <span class="headline-text">{{ section.settings.headline | default: "Let's build something together." }}</span>
+          <div class="headline-underline"></div>
         </h3>
-        <p class="contact-subtext" style="color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6; max-width: 600px; margin: 0 auto;">
+        <p class="contact-subtext" style="color: var(--text-secondary); font-size: 0.85rem; line-height: 1.3; max-width: 600px; margin: 0 auto;">
           {{ section.settings.subtext | default: "Questions about our packs or plugins?" }}
         </p>
       </div>
       
       <div class="contact-form-container" style="max-width: 600px; margin: 0 auto;">
-        <form id="footer-contact-form" class="footer-contact-form" onsubmit="submitFooterContact(event)" style="display: flex; gap: 1rem; align-items: flex-end;">
-          <div class="form-row" style="display: flex; gap: 1rem; width: 100%;">
-            <input 
-              type="email" 
-              id="footer-email" 
-              name="email" 
-              placeholder="Your email" 
-              required
-              class="email-input"
-              style="flex: 1; padding: 1rem; background: var(--cyber-panel); border: 1px solid var(--panel-border); border-radius: 8px; color: var(--text-primary); font-size: 1rem; font-family: 'Space Grotesk', sans-serif; outline: none; transition: all 0.3s ease;"
-            >
-            <textarea 
-              id="footer-message" 
-              name="message" 
-              placeholder="Your message" 
-              rows="1" 
-              required
-              class="message-input"
-              style="flex: 2; padding: 1rem; background: var(--cyber-panel); border: 1px solid var(--panel-border); border-radius: 8px; color: var(--text-primary); font-size: 1rem; font-family: 'Space Grotesk', sans-serif; outline: none; transition: all 0.3s ease; resize: none; min-height: 50px;"
-            ></textarea>
-            <button type="submit" class="send-btn" style="background: var(--accent-blue); color: var(--cyber-bg); padding: 1rem 2rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: 'Space Grotesk', sans-serif; white-space: nowrap; height: fit-content;">
-              <span class="btn-text">Send</span>
-            </button>
-          </div>
+        <form id="footer-contact-form" class="footer-contact-form" onsubmit="submitFooterContact(event)" style="display: flex; gap: 0.75rem; align-items: stretch; position: relative;">
+          <input 
+            type="email" 
+            id="footer-email" 
+            name="email" 
+            placeholder="Your email" 
+            required
+            class="email-input"
+            style="flex: 1; padding: 0.4rem; background: rgba(13, 15, 13, 0.6); border: 1px solid rgba(102, 255, 204, 0.3); border-radius: 6px; color: var(--text-primary); font-size: 0.8rem; font-family: 'Space Grotesk', sans-serif; outline: none; transition: all 0.3s ease; backdrop-filter: blur(10px); height: 32px; box-sizing: border-box;"
+          >
+          <textarea 
+            id="footer-message" 
+            name="message" 
+            placeholder="Your message" 
+            rows="1" 
+            required
+            class="message-input"
+            style="flex: 2; padding: 0.4rem; background: rgba(13, 15, 13, 0.6); border: 1px solid rgba(102, 255, 204, 0.3); border-radius: 6px; color: var(--text-primary); font-size: 0.8rem; font-family: 'Space Grotesk', sans-serif; outline: none; transition: all 0.3s ease; resize: none; height: 32px; backdrop-filter: blur(10px); box-sizing: border-box;"
+          ></textarea>
+          <button type="submit" class="send-btn" style="background: linear-gradient(135deg, var(--accent-blue), #4a9eff); color: var(--cyber-bg); padding: 0.4rem 0.8rem; border: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: 'Space Grotesk', sans-serif; white-space: nowrap; height: 32px; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3); flex-shrink: 0;">
+            <span class="btn-text">Send</span>
+            <div class="btn-shine"></div>
+          </button>
         </form>
         
         <!-- Success Message -->
-        <div id="footer-success" class="footer-success" style="display: none; flex-direction: column; align-items: center; gap: 1rem; padding: 2rem;">
-          <div class="success-check" style="font-size: 3rem; color: var(--neon-green);">✓</div>
-          <span style="color: var(--text-primary); font-size: 1.2rem; font-weight: 600; font-family: 'Space Grotesk', sans-serif;">Message sent!</span>
+        <div id="footer-success" class="footer-success" style="display: none; flex-direction: column; align-items: center; gap: 0.25rem; padding: 0.75rem;">
+          <div class="success-check" style="font-size: 1.5rem; color: var(--neon-green);">✓</div>
+          <span style="color: var(--text-primary); font-size: 0.9rem; font-weight: 600; font-family: 'Space Grotesk', sans-serif;">Message sent!</span>
         </div>
       </div>
     </div>
@@ -52,19 +63,231 @@
 </div>
 
 <style>
+/* Enhanced Contact Section Styling */
+
+/* Animated Background Elements */
+.contact-bg-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(45deg, rgba(102, 255, 204, 0.1), rgba(74, 158, 255, 0.1));
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape-1 {
+  width: 80px;
+  height: 80px;
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 60px;
+  height: 60px;
+  top: 60%;
+  right: 15%;
+  animation-delay: 2s;
+}
+
+.shape-3 {
+  width: 100px;
+  height: 100px;
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 4s;
+}
+
+.shape-4 {
+  width: 40px;
+  height: 40px;
+  top: 40%;
+  right: 30%;
+  animation-delay: 1s;
+}
+
+.grid-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(102, 255, 204, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(102, 255, 204, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(20px, 20px); }
+}
+
+/* Enhanced Headline Styling */
+.headline-text {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(135deg, #ffffff, #66ffcc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textGlow 3s ease-in-out infinite alternate;
+}
+
+.headline-underline {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #66ffcc, transparent);
+  border-radius: 2px;
+  animation: underlineGlow 2s ease-in-out infinite;
+}
+
+@keyframes textGlow {
+  0% { filter: drop-shadow(0 0 10px rgba(102, 255, 204, 0.3)); }
+  100% { filter: drop-shadow(0 0 20px rgba(102, 255, 204, 0.6)); }
+}
+
+@keyframes underlineGlow {
+  0%, 100% { opacity: 0.5; transform: scaleX(0.8); }
+  50% { opacity: 1; transform: scaleX(1); }
+}
+
+/* Enhanced Input Styling */
+.input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.input-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 8px;
+  background: linear-gradient(45deg, rgba(102, 255, 204, 0.1), rgba(74, 158, 255, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.email-input:focus + .input-glow,
+.message-input:focus + .input-glow {
+  opacity: 1;
+  animation: inputPulse 2s ease-in-out infinite;
+}
+
 .email-input:focus,
 .message-input:focus {
-  border-color: var(--accent-blue);
-  box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.2);
+  border-color: #66ffcc;
+  box-shadow: 0 0 0 2px rgba(102, 255, 204, 0.2), 0 0 20px rgba(102, 255, 204, 0.1);
+  transform: translateY(-1px);
+}
+
+@keyframes inputPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* Enhanced Button Styling */
+.send-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.send-btn:hover .btn-shine {
+  left: 100%;
 }
 
 .send-btn:hover {
-  background: var(--neon-green) !important;
-  transform: translateY(-1px);
+  background: linear-gradient(135deg, #66ffcc, #4a9eff) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 255, 204, 0.4);
 }
 
 .send-btn:active {
   transform: translateY(0);
+}
+
+/* Enhanced Success Message */
+.footer-success {
+  background: linear-gradient(135deg, rgba(26, 61, 47, 0.9), rgba(13, 15, 13, 0.9));
+  border: 1px solid #66ffcc;
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 30px rgba(102, 255, 204, 0.2);
+  animation: successSlideIn 0.5s ease-out;
+}
+
+@keyframes successSlideIn {
+  0% { 
+    opacity: 0; 
+    transform: translateY(20px) scale(0.9); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+.success-check {
+  animation: checkBounce 0.6s ease-out;
+}
+
+@keyframes checkBounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Responsive Enhancements */
+@media screen and (max-width: 768px) {
+  .shape {
+    display: none;
+  }
+  
+  .grid-pattern {
+    background-size: 15px 15px;
+  }
+  
+  .headline-text {
+    font-size: 1.8rem;
+  }
 }
 </style>
 
@@ -99,8 +322,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const textarea = document.getElementById('footer-message');
   if (textarea) {
     textarea.addEventListener('input', function() {
-      this.style.height = 'auto';
-      this.style.height = Math.min(this.scrollHeight, 80) + 'px';
+      this.style.height = '32px'; // Reset to base height
+      this.style.height = Math.min(this.scrollHeight, 60) + 'px';
     });
   }
 });

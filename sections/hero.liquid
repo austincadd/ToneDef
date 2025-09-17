@@ -1,69 +1,50 @@
 {{ 'section-hero.css' | asset_url | stylesheet_tag }}
 
 <div class="hero-section section" id="hero">
-  <div class="hero-background parallax">
-    {% if section.settings.background_image %}
-      <img src="{{ section.settings.background_image | image_url: width: 1920 }}" 
-           alt="{{ section.settings.background_image.alt | escape }}"
-           class="hero-bg-image">
-    {% endif %}
-    <div class="hero-overlay"></div>
+  <div class="hero-background">
+    <div class="hero-gradient"></div>
   </div>
   
   <div class="page-width">
     <div class="hero-content">
-      <div class="hero-content-wrapper" style="display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 1200px; margin: 0 auto; gap: 6rem;">
-        <!-- Featured Product Image -->
-        <div class="hero-product-image" style="flex: 1; position: relative;">
-          <div class="product-image-container" style="background: rgba(255, 255, 255, 0.05); padding: 3rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
-            <div class="product-placeholder" style="width: 100%; height: 350px; background: #1a1a1a; border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
-              <div class="product-icon" style="font-size: 3rem; color: #66ffcc;">🎵</div>
-            </div>
-            <div class="sale-badge" style="position: absolute; top: 1.5rem; right: 1.5rem; background: #ff4444; color: white; padding: 0.4rem 0.8rem; border-radius: 4px; font-weight: 600; font-size: 0.8rem;">
-              50% OFF
-            </div>
-          </div>
+      <!-- Clean Typography Focus -->
+      <div class="hero-text">
+        <div class="product-badge">Featured Pack</div>
+        
+        <h1 class="hero-title">
+          <span class="title-line-1">Liquify</span>
+          <span class="title-line-2">Vocals</span>
+        </h1>
+        
+        <p class="hero-description">
+          Professional quality vocal samples for your next track. 
+          Clean, punchy, and ready to use.
+        </p>
+        
+        <div class="price-section">
+          <span class="current-price">$29.99</span>
+          <span class="original-price">$59.99</span>
         </div>
         
-        <!-- Hero Text Content -->
-        <div class="hero-text" style="flex: 1; text-align: left;">
-          <div class="product-badge" style="color: var(--accent-blue); padding: 0.3rem 0; margin-bottom: 1rem; font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; font-family: 'Space Grotesk', sans-serif;">
-            Featured Pack
-          </div>
-          
-          <h1 style="color: var(--text-primary) !important; font-size: 2.5rem !important; margin-bottom: 1rem !important; font-weight: 700 !important; line-height: 1.2 !important; display: block !important; visibility: visible !important; width: 100%; text-align: left !important; font-family: 'Space Grotesk', sans-serif; letter-spacing: 1px;">
-            Warehouse Vocals
-          </h1>
-          
-          <p style="color: var(--text-secondary) !important; font-size: 1.1rem !important; margin-bottom: 1rem !important; line-height: 1.6 !important; display: block !important; visibility: visible !important; width: 100%; text-align: left !important;">
-            Professional quality vocal samples for your next track. Clean, punchy, and ready to use.
-          </p>
-          
-          <div class="price-section" style="margin-bottom: 1rem;">
-            <div class="price-container" style="display: flex; align-items: center; gap: 1rem;">
-              <span class="current-price" style="color: var(--neon-green) !important; font-size: 2rem !important; font-weight: 700 !important; font-family: 'Space Grotesk', sans-serif;">$29.99</span>
-              <span class="original-price" style="color: var(--text-secondary) !important; opacity: 0.6 !important; font-size: 1.2rem !important; text-decoration: line-through !important;">$59.99</span>
-            </div>
-          </div>
-          
-          <div class="cta-buttons" style="display: flex; gap: 1rem;">
-            <button class="add-to-cart-btn" style="background: var(--accent-blue); color: var(--cyber-bg); padding: 1rem 2rem; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-family: 'Space Grotesk', sans-serif;">
-              Add to Cart
-            </button>
-            <button class="preview-btn" style="background: transparent; color: var(--accent-blue); padding: 1rem 2rem; border: 1px solid var(--accent-blue); border-radius: 8px; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; font-family: 'Space Grotesk', sans-serif;">
-              Preview
-            </button>
-          </div>
+        <div class="cta-section">
+          <button class="primary-cta">Add to Cart</button>
+          <button class="secondary-cta">Preview</button>
         </div>
       </div>
       
-      {% if section.settings.featured_image %}
-        <div class="hero-image reveal">
-          <img src="{{ section.settings.featured_image | image_url: width: 600 }}" 
-               alt="{{ section.settings.featured_image.alt | escape }}"
-               class="hero-featured-image">
+      <!-- Subtle Product Preview -->
+      <div class="product-preview">
+        <div class="preview-container">
+          <img 
+            src="https://cdn.shopify.com/s/files/1/0938/0285/6811/files/Screenshot_2025-09-16_at_9.09.20_PM.png?v=1758071391"
+            alt="Warehouse Vocals" 
+            class="preview-image"
+            loading="lazy"
+            width="240"
+            height="240"
+          >
         </div>
-      {% endif %}
+      </div>
     </div>
   </div>
 </div>
