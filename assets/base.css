@@ -2837,20 +2837,15 @@ input[type='checkbox'] {
 }
 
 .header__heading-link:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(135deg, 
-    rgba(102, 255, 204, 0.2) 0%, 
-    rgba(26, 61, 47, 0.3) 100%
-  );
-  border-color: rgba(102, 255, 204, 0.4);
-  box-shadow: 
-    0 8px 25px rgba(102, 255, 204, 0.15),
-    0 0 0 1px rgba(102, 255, 204, 0.2);
+  transform: none;
+  background: none;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .header__heading-link:hover .h2 {
-  color: var(--tonedef-neon);
-  text-shadow: 0 0 20px rgba(102, 255, 204, 0.6);
+  color: inherit;
+  text-shadow: none;
 }
 
 .header__heading-link .h2 {
@@ -2873,8 +2868,8 @@ input[type='checkbox'] {
 }
 
 .header__heading-logo:hover {
-  filter: drop-shadow(0 0 20px rgba(102, 255, 204, 0.6));
-  transform: scale(1.05);
+  filter: inherit;
+  transform: none;
 }
 
 .header__heading-logo-wrapper {
@@ -2902,7 +2897,7 @@ input[type='checkbox'] {
 }
 
 .header__heading-link:hover .header__heading-logo-wrapper::before {
-  opacity: 1;
+  opacity: 0;
 }
 
 /* Enhanced text fallback when no logo is uploaded */
