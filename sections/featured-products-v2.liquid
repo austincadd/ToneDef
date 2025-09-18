@@ -1,0 +1,146 @@
+<div class="featured-products-section section" id="shop">
+  <div class="page-width">
+    <div class="section-header">
+      {% if section.settings.heading != blank %}
+        <h2 class="featured-products-heading">{{ section.settings.heading }}</h2>
+      {% endif %}
+      
+      {% if section.settings.subheading != blank %}
+        <p class="featured-products-subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+    </div>
+    
+    <div class="sample-packs-grid">
+      {% assign products = collections[section.settings.collection].products %}
+      {% assign products_to_show = section.settings.products_to_show | default: 2 %}
+      
+      {% for product in products limit: products_to_show %}
+        <div class="sample-pack-card">
+          {% if product.available %}
+            <div class="buy-now-badge">Available Now</div>
+          {% else %}
+            <div class="coming-soon-badge">Coming Soon</div>
+          {% endif %}
+          
+          <div class="product-image-container">
+            {% if product.featured_media %}
+              <img src="{{ product.featured_media | image_url: width: 200 }}" 
+                   alt="{{ product.featured_media.alt | escape }}"
+                   loading="lazy"
+                   class="product-image">
+            {% else %}
+              <div class="product-placeholder">
+                <div class="placeholder-icon">MUSIC</div>
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="product-info">
+            <h3 class="product-title">{{ product.title | default: 'Sample Pack' }}</h3>
+            <p class="product-description">{{ product.description | strip_html | truncate: 60 | default: 'Premium sounds for your next hit' }}</p>
+            
+            <div class="product-price">
+              <div class="price-container">
+                <span class="current-price">
+                  {% if product.price %}{{ product.price | money }}{% else %}$29.99{% endif %}
+                </span>
+                {% if product.compare_at_price > product.price %}
+                  <span class="original-price">{{ product.compare_at_price | money }}</span>
+                {% endif %}
+              </div>
+            </div>
+            
+            {% if product.available %}
+              <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form">
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                <button type="submit" class="add-to-cart-btn">Add to Cart</button>
+              </form>
+            {% else %}
+              <button class="add-to-cart-btn" disabled>Sold Out</button>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+      
+      {% if products.size == 0 %}
+        <div class="sample-pack-card">
+          <div class="product-image-container">
+            <div class="product-placeholder">
+              <div class="placeholder-icon">MUSIC</div>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">Sample Pack</h3>
+            <p class="product-description">Premium sounds coming soon</p>
+            <div class="product-price">
+              <div class="price-container">
+                <span class="current-price">$29.99</span>
+              </div>
+            </div>
+            <button class="add-to-cart-btn" disabled>Coming Soon</button>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    
+    {% if section.settings.show_view_all %}
+      <div class="featured-products-footer">
+        <a href="/collections/all" class="view-all-btn">
+          {{ section.settings.view_all_text | default: 'View All Packs' }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "tag": "section", 
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured Products"
+    },
+    {
+      "type": "textarea", 
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "collection",
+      "id": "collection", 
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12, 
+      "step": 1,
+      "default": 5,
+      "label": "Number of products to show"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All button",
+      "default": true
+    },
+    {
+      "type": "text", 
+      "id": "view_all_text",
+      "label": "View All button text",
+      "default": "View All Products"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ]
+}
+{% endschema %}
